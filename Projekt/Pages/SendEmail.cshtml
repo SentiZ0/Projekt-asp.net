@@ -1,0 +1,44 @@
+﻿@page
+@model Projekt.Pages.SendEmailModel
+@{
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    .input {
+        margin: 15px 0px;
+        float: left;
+    }
+
+    .font-style {
+        font-family: 'Space Mono', monospace;
+    }
+
+    .submit {
+        margin: 20px 0px;
+        float: left;
+    }
+
+        .input-desc {
+        line-height: 40px; 
+        height: 100px;
+        top: 0;
+    }
+</style>
+
+<h3>Wyślij Email</h3>
+
+<div class="text-center font-style">
+    <form method="post">
+        <label class="input" asp-for="Mail.ReceiverId"></label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź email adresata" asp-for="Mail.ReceiverId" />
+        <label class="input" asp-for="Mail.Title"></label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź tytuł" asp-for="Mail.Title" />
+        <label class="input" asp-for="Mail.Content"></label>
+        <textarea class="form-control input-desc" placeholder="Wprowadź opis zwierzaka" asp-for=Mail.Content></textarea>
+        <button type="submit" class="btn btn-primary submit">Zatwierdź</button>
+    </form>
+</div>

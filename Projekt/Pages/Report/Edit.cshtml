@@ -1,0 +1,116 @@
+﻿@page
+@model Projekt.Pages.Report.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    img {
+        max-width: 75%;
+    }
+
+    .distance {
+        margin: 15px 0px;
+    }
+
+    button {
+        margin 20px 0px;
+    }
+
+    #button1 {
+        background-color: #1873f2
+    }
+
+    #button2 {
+        background-color: #f2182a;
+    }
+
+    #button3 {
+        background-color: #9dacc2;
+    }
+
+    .distance {
+        marign: 5px 0px;
+    }
+
+    .button-distance{
+        margin: 40px 0px 0px;
+    }
+
+    .inner {
+        display: inline-block;
+    }
+
+    #outer {
+        width: 100%;
+        text-align: left;
+    }
+    .font-family{
+        font-family: 'Space Mono', monospace;
+    }
+</style>
+
+<div class="font-family">
+    <h1>Panel postu</h1>
+    <h4>Animals</h4>
+</div>
+
+<hr />
+<div class="row">
+    <link rel="stylesheet" href="~/css/Buttons.css" />
+    <div class="col-md-4 font-family">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Animals.Id" />
+            <div class="form-group">
+                <label asp-for="Animals.Name" class="control-label distance"></label>
+                <input asp-for="Animals.Name" class="form-control" disabled />
+                <span asp-validation-for="Animals.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group distance">
+                <label asp-for="Animals.Description" class="control-label distance"></label>
+                <input asp-for="Animals.Description" class="form-control" disabled />
+                <span asp-validation-for="Animals.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Animals.FilePath" class="control-label distance"></label><br />
+                <img src="/@Model.Animals.FilePath">
+            </div>
+            <div class="form-group distance">
+                <label asp-for="Animals.ReportDate" class="control-label" hidden></label>
+                <input asp-for="Animals.ReportDate" class="form-control" disabled hidden />
+                <span asp-validation-for="Animals.ReportDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check distance" hidden>
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Animals.Accepted" /> @Html.DisplayNameFor(model => model.Animals.Accepted)
+                </label>
+            </div>
+            <div class="btn-group button-distance">
+                <div class="form-group">
+                    @*<input type="submit" asp-page-handler="Accept" name="id" value="@Model.Animals.Id" hidden />*@
+                    <button type="submit" id="button1" class="button inner" asp-page-handler="Accept" name="id" value="@Model.Animals.Id"><span>Zatwierdź </span></button>
+                </div>
+                <div class="form-group">
+                    @*<input type="submit" asp-page-handler="Reject" name="id" value="@Model.Animals.Id" hidden />*@
+                    <button type="submit" id="button2" class="button inner" asp-page-handler="Reject" name="id" value="@Model.Animals.Id"><span>Odrzuć </span></button>
+                </div>
+                <div>
+                    <button type="submit" id="button3" class="button inner" asp-page-handler="Return"><span>Powrót </span></button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

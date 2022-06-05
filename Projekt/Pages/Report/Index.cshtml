@@ -1,0 +1,57 @@
+﻿@page
+@model Projekt.Pages.Report.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    .text-style{
+        font-family: 'Space Mono', monospace;
+    }
+</style>
+
+<div class = "text-style">
+    <h1>Lista nowych zgłoszeń</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Animals[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Animals[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Animals[0].ReportDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Animals)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReportDate)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Szczegóły</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,92 @@
+﻿@page
+@model Projekt.Pages.CreateReportModel
+@{
+}
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    .input {
+        margin: 10px 0px;
+        float: left;
+        font-family: 'Space Mono', monospace;
+    }
+
+    .input-desc {
+        margin: 10px 0px;
+        line-height: 40px: float: left;
+        font-family: 'Space Mono', monospace;
+        height: 100px;
+        top: 0;
+    }
+
+    .form-control {
+        margin: 5px 0px 10px;
+        float: left;
+        font-family: 'Space Mono', monospace;
+    }
+
+    h3 {
+        font-size: 15px;
+        font-family: 'Space Mono', monospace;
+    }
+
+    button {
+        margin: 15px 0px;
+        float: left;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .post-image {
+        clear: left;
+        float: left;
+    }
+
+    .submit {
+        float: left;
+        margin: 40px 0px;
+        clear: left;
+    }
+
+    .alert {
+        clear: left;
+    }
+
+    .alert {
+        border-style: solid;
+        border: 3px;
+        font-family: 'Space Mono', monospace;
+    }
+</style>
+
+<body>
+    <h2>Utwórz zgłoszenie</h2>
+    <h3>Tutaj możesz utworzyć zgłoszenie dotyczące zaginięcia twojego pupila</h3>
+    <h3>Zgłoszenie pojawi się automatycznie na stronie z aktualnościami po zatwierdzeniu przez administratora</h3>
+    <div class="text-center">
+        <form method="post" enctype="multipart/form-data">
+            <label class="input" asp-for="Animals.Name"></label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź imię zwierzaka" asp-for="Animals.Name" />
+            <label class="input" asp-for="Animals.Description"></label>
+            <textarea class="form-control input-desc" placeholder="Wprowadź opis zwierzaka" asp-for=Animals.Description></textarea>
+            @*<input type="text" class="form-control input-desc" id="formGroupExampleInput" placeholder="Wprowadź opis zwierzaka" asp-for="Animals.Description" />*@
+            <label class="input" asp-for="Animals.FilePath"></label>
+            <input class="post-image" asp-for="UploadedFile" /><br />
+            <button type="submit" class="btn btn-primary submit">Zatwierdź</button>
+        </form>
+    </div>
+    @if (Model.AlertMessage != null)
+    {
+        <div class="alert alert-primary" role="alert">
+            <h6><b>Spróbuj ponownie</b></h6>
+            @Model.AlertMessage
+        </div>
+    }
+
+</body>
