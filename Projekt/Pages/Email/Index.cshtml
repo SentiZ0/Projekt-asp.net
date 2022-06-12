@@ -1,0 +1,77 @@
+﻿@page
+@model Projekt.Pages.Email.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    a {
+        color: inherit; /* blue colors for links too */
+        text-decoration: inherit; /* no underline */
+    }
+
+    .font-style {
+        font-family: 'Space Mono', monospace;
+    }
+</style>
+
+<div class="">
+    <h1>Skrzynka odbiorcza</h1>
+
+    <br />
+    <a asp-page="./SendEmail">
+        <h6>Utwórz wiadomość <img src="MailIcon.png" width="32" height="32" /></h6>
+
+    </a>
+
+    <br />
+    <h4>Nowe wiadomości</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Od:
+                </th>
+                <th>
+                    Tytuł:
+                </th>
+                <th>
+
+                </th>
+
+                <th>
+                    Data odbioru:
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Letterbox)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SenderId)
+                    </td>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@item.Id">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </a>
+                    </td>
+                    <th>
+
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MailDate)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

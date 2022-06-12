@@ -12,8 +12,8 @@ using Projekt.Data;
 namespace Projekt.Migrations
 {
     [DbContext(typeof(ShelterDbContext))]
-    [Migration("20220605122410_PostUpdate3")]
-    partial class PostUpdate3
+    [Migration("20220612094657_Init-Schema")]
+    partial class InitSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,7 +57,7 @@ namespace Projekt.Migrations
                     b.ToTable("Animals");
                 });
 
-            modelBuilder.Entity("Projekt.Models.Mail", b =>
+            modelBuilder.Entity("Projekt.Models.Letterbox", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,7 +88,7 @@ namespace Projekt.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Mails");
+                    b.ToTable("Letterboxes");
                 });
 
             modelBuilder.Entity("Projekt.Models.Post", b =>

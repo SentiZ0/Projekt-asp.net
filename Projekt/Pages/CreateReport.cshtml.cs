@@ -30,6 +30,7 @@ namespace Projekt.Pages
         public async Task OnPostAsync()
         {
             var checkType = UploadedFile.ContentType;
+            var fileSize = UploadedFile.Length; 
 
             if (UploadedFile == null || UploadedFile.Length == 0)
             {
@@ -39,6 +40,11 @@ namespace Projekt.Pages
             else if (!(checkType.Contains("image")))
             {
                 AlertMessage = "Wybrano niepoprawny format pliku. Obs³ugiwane formaty to gif/jpeg/png/webp.";
+                return;
+            }
+            else if (fileSize > 1048576)
+            {
+                AlertMessage = "Plik nie mo¿e przekraczaæ 10mb";
                 return;
             }
 

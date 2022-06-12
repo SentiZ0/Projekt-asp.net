@@ -55,7 +55,7 @@ namespace Projekt.Migrations
                     b.ToTable("Animals");
                 });
 
-            modelBuilder.Entity("Projekt.Models.Mail", b =>
+            modelBuilder.Entity("Projekt.Models.Letterbox", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -86,7 +86,7 @@ namespace Projekt.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Mails");
+                    b.ToTable("Letterboxes");
                 });
 
             modelBuilder.Entity("Projekt.Models.Post", b =>

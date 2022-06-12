@@ -27,7 +27,7 @@ namespace Projekt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Mails",
+                name: "Letterboxes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -40,7 +40,23 @@ namespace Projekt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mails", x => x.Id);
+                    table.PrimaryKey("PK_Letterboxes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Posts",
+                columns: table => new
+                {
+                    PostId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AnimalsId = table.Column<int>(type: "int", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Posts", x => x.PostId);
                 });
         }
 
@@ -50,7 +66,10 @@ namespace Projekt.Migrations
                 name: "Animals");
 
             migrationBuilder.DropTable(
-                name: "Mails");
+                name: "Letterboxes");
+
+            migrationBuilder.DropTable(
+                name: "Posts");
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Projekt.Data
        
         public DbSet<Animals> Animals { get; set; }
 
-        public DbSet<Mail> Mails { get; set; }
+        public DbSet<Letterbox> Letterboxes { get; set; }
 
         public DbSet<Post> Posts { get; set; }
 

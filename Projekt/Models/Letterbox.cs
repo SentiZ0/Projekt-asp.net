@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projekt.Models
 {
-    public class Mail
+    public class Letterbox
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
