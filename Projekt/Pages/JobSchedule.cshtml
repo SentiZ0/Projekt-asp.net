@@ -1,0 +1,61 @@
+﻿@page
+@model JobScheduleModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    .napis {
+        margin: 10px 0px;
+        font-family: 'Space Mono', monospace;
+    }
+    h3 {
+        font-size: 30px;
+    }
+    h3 {
+        font-size: 15px;
+    }
+        table, th, td {
+      border:1px solid black;
+      width: 10px;
+    }
+
+</style>
+<div class="text-center">
+    <table style="width:70%">
+        <div class="text-center">
+        <tr>
+            <th><h2 style="float: left;"><b>Start</b></h2></th>
+            <th><h2 style="float: left;"><b>Koniec</b></h2></th>
+            <th><h2 style="float: left;"><b>Opis</b></h2></th>
+        <tr />
+</div>
+
+<div class="text-center">
+
+    <link rel="stylesheet" href="~/css/Buttons.css" />
+    <ul>
+
+                @foreach (var element in Model.Jobs)
+                {
+
+            <div class="napis">
+                <tr>
+                    <br>
+                    <td style="float: left;"> @element.JobStartDate</td>
+                    <td style="float: left;"> @element.JobEndDate</td>
+                    <td style="float: left;"> @element.Responsibility</td>
+                </tr>
+            </div>
+
+                }
+    </ul>
+
+
+</div>
+</table>
+</div>

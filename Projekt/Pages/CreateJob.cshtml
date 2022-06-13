@@ -1,0 +1,56 @@
+﻿@page
+@model Projekt.Pages.CreateJobModel
+@{
+}
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    .form-control {
+        margin: 5px 0px 10px;
+        float: left;
+        font-family: 'Space Mono', monospace;
+    }
+
+    h3 {
+        font-size: 15px;
+        font-family: 'Space Mono', monospace;
+    }
+
+    button {
+        margin: 15px 0px;
+        float: left;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+</style>
+
+
+<body>
+    <h2>Utwórz termin pracy</h2>
+    <h3>Podaj datę rozpoczęcia pracy, zakończenia oraz obowiązki.</h3>
+    <form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+    Od: <input class="form-control" asp-for="Job.JobStartDate"  asp-format="{0:yyyy-MM-ddTHH:mm}"/>
+    </div>
+    <div class="form-group">
+    Do: <input class="form-control" asp-for="Job.JobEndDate"  asp-format="{0:yyyy-MM-ddTHH:mm}"/>
+    </div>
+
+    <div class="form-group"> 
+     <label class="input" asp-for="Job.Responsibility"></label>
+     <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź obowiązek" asp-for="Job.Responsibility" />
+    
+     </div>
+
+
+    <button type="submit" class="btn btn-primary submit">Zatwierdź</button>
+    </form>
+
+
+</body>
