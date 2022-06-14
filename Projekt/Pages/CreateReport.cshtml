@@ -39,6 +39,19 @@
         float: left;
     }
 
+
+    #button1 {
+        background-color: #1873f2
+    }
+
+    #button2 {
+        background-color: #f2182a;
+    }
+
+    #button3 {
+        background-color: #9dacc2;
+    }
+
     h2 {
         font-size: 20px;
     }
@@ -63,22 +76,34 @@
         border: 3px;
         font-family: 'Space Mono', monospace;
     }
+
+    .button-distance {
+        margin: 400px 0px 0px;
+        clear: left;
+    }
 </style>
 
 <body>
-    <h2>Utwórz zgłoszenie</h2>
-    <h3>Tutaj możesz utworzyć zgłoszenie dotyczące zaginięcia twojego pupila</h3>
-    <h3>Zgłoszenie pojawi się automatycznie na stronie z aktualnościami po zatwierdzeniu przez administratora</h3>
+    <link rel="stylesheet" href="~/css/Buttons.css" />
+    <div>
+        <h2>Utwórz zgłoszenie</h2>
+        <h3>Tutaj możesz utworzyć zgłoszenie dotyczące zaginięcia twojego pupila</h3>
+        <h3>Zgłoszenie pojawi się automatycznie na stronie z aktualnościami po zatwierdzeniu przez administratora</h3>
+    </div>
+
     <div class="text-center">
         <form method="post" enctype="multipart/form-data">
-            <label class="input" asp-for="Animals.Name"></label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź imię zwierzaka" asp-for="Animals.Name" />
-            <label class="input" asp-for="Animals.Description"></label>
-            <textarea class="form-control input-desc" placeholder="Wprowadź opis zwierzaka" asp-for=Animals.Description></textarea>
-            @*<input type="text" class="form-control input-desc" id="formGroupExampleInput" placeholder="Wprowadź opis zwierzaka" asp-for="Animals.Description" />*@
-            <label class="input" asp-for="Animals.FilePath"></label>
-            <input class="post-image" asp-for="UploadedFile" /><br />
-            <button type="submit" class="btn btn-primary submit">Zatwierdź</button>
+            <div>
+                <label class="input" asp-for="Animals.Name"></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź imię zwierzaka" asp-for="Animals.Name" />
+                <label class="input" asp-for="Animals.Description"></label>
+                <textarea class="form-control input-desc" placeholder="Wprowadź opis zwierzaka" asp-for=Animals.Description></textarea>
+                <label class="input" asp-for="Animals.FilePath"></label>
+                <input class="post-image" asp-for="UploadedFile" />
+            </div>
+            <div class="button-distance">
+                <button type="submit" style="margin: 30px 0px;" id="button1" class="button inner"><span>Zatwierdź</span></button>
+            </div>
         </form>
     </div>
     @if (Model.AlertMessage != null)

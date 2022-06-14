@@ -90,15 +90,18 @@
                                 <button type="submit" id="button2" class="button inner" asp-page-handler="Reject" name="id" value="@element.Id"><span>Usuń post </span></button>
                             </form>
                         </div>
+                        <br>
+                        <div class="distance">
+                            <form method="post">
+                                <label class="input" style="float: left; margin: 10px 0px;" asp-for="Post.Content"></label>
+                                <input type="text" style="margin: 10px 0px;" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź treść komentarza" asp-for="Post.Content" />
+                                <button type="submit" id="button1" class="button inner" name="id" value="@element.Id"><span>Wyślij </span></button>
+                            </form>
+                        </div>
 
-                        <form method="post">
-                            <label class="input" asp-for="Post.Content" hidden></label>
-                            <input type="text" style="margin: 10px 0px;" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź treść komentarza" asp-for="Post.Content" />
-                            <button type="submit" id="button1" class="button inner" name="id" value="@element.Id"><span>Wyślij </span></button>
-                        </form>
                         <br>
                         <br>
-                        <h5 style="float: left">Komentarze</h5>
+                        <h5 style="float: left; margin: 0px 0px 30px;">Komentarze</h5>
                         <br>
                         <div class="comments">
                             @foreach (var item in Model.Posts)

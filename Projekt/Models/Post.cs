@@ -11,6 +11,7 @@ namespace Projekt.Models
 
         public int AnimalsId { get; set; }
 
+        [Display(Name="Dodaj komentarz")]
         public string Content { get; set; }
 
         [Required]
