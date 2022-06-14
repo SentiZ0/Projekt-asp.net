@@ -10,11 +10,13 @@ namespace Projekt.Pages
     {
         private readonly ShelterDbContext _context;
         private readonly ILogger<IndexModel> _logger;
+        private readonly IHostEnvironment _environment;
 
-        public IndexModel(ILogger<IndexModel> logger, ShelterDbContext context)
+        public IndexModel(ILogger<IndexModel> logger, ShelterDbContext context, IHostEnvironment environment)
         {
             _logger = logger;
             _context = context;
+            _environment = environment;
         }
 
         public Animals Animal { get; set; } = default!;
@@ -26,6 +28,8 @@ namespace Projekt.Pages
 
         public IList<Post> Posts { get; set; }
 
+        public IFormFile UploadedFile { get; set; }
+
         public async Task<IActionResult> OnPostReject(int id)
         {
             if (id == null || _context.Animals == null)
@@ -33,6 +37,13 @@ namespace Projekt.Pages
                 return NotFound();
             }
             var animal = await _context.Animals.FindAsync(id);
+
+            string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{animal.FilePath}";
+
+            if (System.IO.File.Exists(targetFileName))
+            {
+                System.IO.File.Delete(targetFileName);
+            }
 
             if (animal != null)
             {

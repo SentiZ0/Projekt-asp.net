@@ -22,16 +22,21 @@
         float: left;
     }
 
-        .input-desc {
-        line-height: 40px; 
+    .input-desc {
+        line-height: 40px;
         height: 100px;
         top: 0;
+    }
+
+    #button3 {
+        background-color: #9dacc2;
     }
 </style>
 
 <h3>Wyślij Email</h3>
 
 <div class="text-center font-style">
+    <link rel="stylesheet" href="~/css/Buttons.css" />
     <form method="post">
         <label class="input" asp-for="Letterbox.ReceiverId"></label>
         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź email adresata" asp-for="Letterbox.ReceiverId" />
@@ -40,5 +45,8 @@
         <label class="input" asp-for="Letterbox.Content"></label>
         <textarea class="form-control input-desc" placeholder="Wprowadź opis zwierzaka" asp-for=Letterbox.Content></textarea>
         <button type="submit" class="btn btn-primary submit">Zatwierdź</button>
+        <div>
+            <button type="submit" id="button3" class="button inner" asp-page-handler="Return"><span>Powrót </span></button>
+        </div>
     </form>
 </div>

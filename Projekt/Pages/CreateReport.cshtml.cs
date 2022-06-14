@@ -30,7 +30,9 @@ namespace Projekt.Pages
         public async Task OnPostAsync()
         {
             var checkType = UploadedFile.ContentType;
-            var fileSize = UploadedFile.Length; 
+            var fileSize = UploadedFile.Length;
+            var fileCounter = 1;
+            bool stopLoop = true;
 
             if (UploadedFile == null || UploadedFile.Length == 0)
             {
@@ -49,14 +51,28 @@ namespace Projekt.Pages
             }
 
             _logger.LogInformation($"Uploading {UploadedFile.FileName}.");
-            string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{UploadedFile.FileName}";
+
+            string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{UploadedFile.FileName}";
+
+            while(stopLoop != false)
+            {
+                if (System.IO.File.Exists(targetFileName))
+                {
+                    fileCounter++;
+                    targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{UploadedFile.FileName}";
+                }
+                else
+                {
+                    stopLoop = false;
+                }
+            }
 
             using (var stream = new FileStream(targetFileName, FileMode.Create))
             {
                 await UploadedFile.CopyToAsync(stream);
             }
-            
-            Animals.FilePath = $"{UploadedFile.FileName}";
+
+            Animals.FilePath = $"{fileCounter}{UploadedFile.FileName}";
             Animals.ReportDate = DateTime.Now;
             Animals.Accepted = false;
 

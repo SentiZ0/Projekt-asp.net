@@ -14,14 +14,17 @@ namespace Projekt.Pages.Report
     public class EditModel : PageModel
     {
         private readonly Projekt.Data.ShelterDbContext _context;
-
-        public EditModel(Projekt.Data.ShelterDbContext context)
+        private readonly IHostEnvironment _environment;
+        public EditModel(Projekt.Data.ShelterDbContext context, IHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         [BindProperty]
         public Animals Animals { get; set; } = default!;
+
+        public IFormFile UploadedFile { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -88,6 +91,13 @@ namespace Projekt.Pages.Report
                 return NotFound();
             }
             var animals = await _context.Animals.FindAsync(id);
+
+            string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{animals.FilePath}";
+
+            if (System.IO.File.Exists(targetFileName))
+            {
+                System.IO.File.Delete(targetFileName);
+            }
 
             if (animals != null)
             {

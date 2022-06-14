@@ -30,6 +30,11 @@ namespace Projekt.Pages
 
             return Page();
         }
+
+        public async Task<IActionResult> OnPostReturn()
+        {
+            return RedirectToPage("./Index");
+        }
         public void OnGet()
         {
         }
