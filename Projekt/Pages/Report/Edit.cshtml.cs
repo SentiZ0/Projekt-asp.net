@@ -24,6 +24,8 @@ namespace Projekt.Pages.Report
         [BindProperty]
         public Animals Animals { get; set; } = default!;
 
+        public List<FileEntity> FileEntities { get; set; } = default!;
+
         public IFormFile UploadedFile { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -34,11 +36,16 @@ namespace Projekt.Pages.Report
             }
 
             var animals =  await _context.Animals.FirstOrDefaultAsync(m => m.Id == id);
+            var fileEntities = await _context.FileEntities.Where(a => a.AnimalsId == id).ToListAsync();
+
             if (animals == null)
             {
                 return NotFound();
             }
+
             Animals = animals;
+            FileEntities = fileEntities;
+
             return Page();
         }
 
@@ -92,12 +99,12 @@ namespace Projekt.Pages.Report
             }
             var animals = await _context.Animals.FindAsync(id);
 
-            string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{animals.FilePath}";
+            //string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{animals.FilePath}";
 
-            if (System.IO.File.Exists(targetFileName))
-            {
-                System.IO.File.Delete(targetFileName);
-            }
+            //if (System.IO.File.Exists(targetFileName))
+            //{
+            //    System.IO.File.Delete(targetFileName);
+            //}
 
             if (animals != null)
             {

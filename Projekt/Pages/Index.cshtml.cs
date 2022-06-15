@@ -38,12 +38,12 @@ namespace Projekt.Pages
             }
             var animal = await _context.Animals.FindAsync(id);
 
-            string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{animal.FilePath}";
+            //string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{animal.FilePath}";
 
-            if (System.IO.File.Exists(targetFileName))
-            {
-                System.IO.File.Delete(targetFileName);
-            }
+            //if (System.IO.File.Exists(targetFileName))
+            //{
+            //    System.IO.File.Delete(targetFileName);
+            //}
 
             if (animal != null)
             {

@@ -19,13 +19,11 @@ namespace Projekt.Models
         [MaxLength(385)]
         public string Description { get; set; }
 
-        [Required]
-        [Display(Name = "Ścieżka do pliku")]
-        public string FilePath { get; set; }
-
         [Display(Name = "Data utworzenia")]
         public DateTime ReportDate { get; set; }
 
         public bool Accepted { get; set; }
+
+        public List<FileEntity> FilePaths { get; set; }
     }
 }

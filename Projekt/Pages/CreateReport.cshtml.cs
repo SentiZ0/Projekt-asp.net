@@ -25,56 +25,66 @@ namespace Projekt.Pages
         public string AlertMessage { get; set; }
 
         [BindProperty]
-        public IFormFile UploadedFile { get; set; }
+        public List<IFormFile> FormFiles { get; set; }
 
-        public async Task OnPostAsync()
+        public async Task OnPostAsync(int id)
         {
-            var checkType = UploadedFile.ContentType;
-            var fileSize = UploadedFile.Length;
-            var fileCounter = 1;
-            bool stopLoop = true;
+            var files = new List<FileEntity>();
 
-            if (UploadedFile == null || UploadedFile.Length == 0)
+            foreach (var aformFile in FormFiles)
             {
-                AlertMessage = "Nie wybrano/odnaleziono pliku.";
-                return;
-            }
-            else if (!(checkType.Contains("image")))
-            {
-                AlertMessage = "Wybrano niepoprawny format pliku. Obs³ugiwane formaty to gif/jpeg/png/webp.";
-                return;
-            }
-            else if (fileSize > 1048576)
-            {
-                AlertMessage = "Plik nie mo¿e przekraczaæ 10mb";
-                return;
-            }
+                var fileEntity = new FileEntity();
 
-            _logger.LogInformation($"Uploading {UploadedFile.FileName}.");
+                var formFile = aformFile;
 
-            string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{UploadedFile.FileName}";
+                var fileSize = formFile.Length;
+                var checkType = formFile.ContentType;
+                var fileCounter = 1;
+                bool stopLoop = true;
 
-            while(stopLoop != false)
-            {
-                if (System.IO.File.Exists(targetFileName))
+                if (formFile == null || formFile.Length == 0)
                 {
-                    fileCounter++;
-                    targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{UploadedFile.FileName}";
+                    AlertMessage = "Nie wybrano/odnaleziono pliku.";
+                    return;
                 }
-                else
+                else if (!(checkType.Contains("image")))
                 {
-                    stopLoop = false;
+                    AlertMessage = "Wybrano niepoprawny format pliku. Obs³ugiwane formaty to gif/jpeg/png/webp.";
+                    return;
                 }
+                else if (fileSize > 1048576)
+                {
+                    AlertMessage = "Plik nie mo¿e przekraczaæ 10mb";
+                    return;
+                }
+
+                string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{formFile.FileName}";
+
+                while (stopLoop != false)
+                {
+                    if (System.IO.File.Exists(targetFileName))
+                    {
+                        fileCounter++;
+                        targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{formFile.FileName}";
+                    }
+                    else
+                    {
+                        stopLoop = false;
+                    }
+                }
+
+                using (var stream = new FileStream(targetFileName, FileMode.Create))
+                {
+                    await formFile.CopyToAsync(stream);
+                }
+
+                fileEntity.FilePath = $"{fileCounter}{formFile.FileName}";
+                files.Add(fileEntity);
             }
 
-            using (var stream = new FileStream(targetFileName, FileMode.Create))
-            {
-                await UploadedFile.CopyToAsync(stream);
-            }
-
-            Animals.FilePath = $"{fileCounter}{UploadedFile.FileName}";
             Animals.ReportDate = DateTime.Now;
             Animals.Accepted = false;
+            Animals.FilePaths = files;
 
             _context.Animals.Add(Animals);
             _context.SaveChanges();

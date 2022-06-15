@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projekt.Data;
 
@@ -11,9 +12,10 @@ using Projekt.Data;
 namespace Projekt.Migrations
 {
     [DbContext(typeof(ShelterDbContext))]
-    partial class ShelterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220615155842_InitFileEntities")]
+    partial class InitFileEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +61,10 @@ namespace Projekt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AnimalsId")
+                    b.Property<int?>("AnimalsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AnimalsaId")
                         .HasColumnType("int");
 
                     b.Property<string>("FilePath")
@@ -166,9 +171,7 @@ namespace Projekt.Migrations
                 {
                     b.HasOne("Projekt.Models.Animals", null)
                         .WithMany("FilePaths")
-                        .HasForeignKey("AnimalsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AnimalsId");
                 });
 
             modelBuilder.Entity("Projekt.Models.Animals", b =>

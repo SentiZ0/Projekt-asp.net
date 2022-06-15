@@ -98,11 +98,11 @@
                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź imię zwierzaka" asp-for="Animals.Name" />
                 <label class="input" asp-for="Animals.Description"></label>
                 <textarea class="form-control input-desc" placeholder="Wprowadź opis zwierzaka" asp-for=Animals.Description></textarea>
-                <label class="input" asp-for="Animals.FilePath"></label>
-                <input class="post-image" asp-for="UploadedFile" />
+                <label class="input" asp-for="Animals.FilePaths"></label>
+                <input class="post-image" type="file" asp-for="@Model.FormFiles" multiple />
             </div>
             <div class="button-distance">
-                <button type="submit" style="margin: 30px 0px;" id="button1" class="button inner"><span>Zatwierdź</span></button>
+                <button type="submit" style="margin: 30px 0px;" id="button1" class="button inner" name="id" value="Animals.Id"><span>Zatwierdź</span></button>
             </div>
         </form>
     </div>
