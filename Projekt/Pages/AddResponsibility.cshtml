@@ -1,0 +1,43 @@
+﻿@page
+@model AddResponsibilityModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+
+ <h1>Add Responsibility</h1>
+ 
+<h3>Jesteś pewien, że chcesz wziąć obowiązek?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.JobStartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.JobStartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.JobEndDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.JobEndDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.Responsibility)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.Responsibility)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Job.Id" />
+        <input type="submit" value="Add" class="btn btn-danger" /> |
+        <a asp-page="./JobSchedule">Back to List</a>
+    </form>
+</div>

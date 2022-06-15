@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
@@ -6,6 +7,7 @@ using Projekt.Models;
 
 namespace Projekt.Pages
 {
+    [Authorize]
     public class JobScheduleModel : PageModel
     {
         private readonly ShelterDbContext _context;
@@ -26,7 +28,10 @@ namespace Projekt.Pages
 
         public async Task OnGetAsync()
         {
-            Jobs = await _context.Jobs.ToListAsync();
+            if (_context.Jobs != null)
+            {
+                Jobs = await _context.Jobs.ToListAsync();
+            }
         }
     }
 }

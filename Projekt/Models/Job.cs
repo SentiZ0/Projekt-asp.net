@@ -8,7 +8,7 @@ namespace Projekt.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int JobId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Display(Name = "Data")]
@@ -18,10 +18,10 @@ namespace Projekt.Models
         [Display(Name = "Data")]
         public DateTime JobEndDate { get; set; }
         
-        public String Responsibility {get;set;}
+        public string Responsibility {get;set;}
 
-        public int WorkerId { get; set; }
+        public string ?WorkerMail { get; set; }
 
-        public bool JobAccepted {get; set;}
+        public bool ?JobAccepted {get; set;}
     }
 }

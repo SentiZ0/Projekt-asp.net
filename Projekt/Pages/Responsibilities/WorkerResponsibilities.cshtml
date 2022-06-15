@@ -1,7 +1,7 @@
 ﻿@page
-@model JobScheduleModel
+@model WorkerResponsibilityModel
 @{
-    ViewData["Title"] = "Dobierz obowiązki";
+    ViewData["Title"] = "Twoje Obowiązki";
 }
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +40,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Jobs[0].Responsibility)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jobs[0].JobAccepted)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -47,7 +50,7 @@
     <tbody> 
         @foreach (var item in Model.Jobs)
         {
-            @if (@item.WorkerMail==null)
+            @if (String.Equals(@item.WorkerMail, User.Identity.Name))
             {
                 <tr>
                     <td>
@@ -60,8 +63,11 @@
                         @Html.DisplayFor(modelItem => item.Responsibility)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.JobAccepted)
+                    </td>
+                    <td>
                         {
-                        <a asp-page="./AddResponsibility" asp-route-id="@item.Id">Wybierz</a>
+                        <a asp-page="./CancelResponsibility" asp-route-id="@item.Id">Delete</a>
                         }
                     </td>
                 </tr>
