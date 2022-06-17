@@ -26,7 +26,7 @@ namespace Projekt.Pages.Report
 
         public List<FileEntity> FileEntities { get; set; } = default!;
 
-        public IFormFile UploadedFile { get; set; }
+        public List<IFormFile> UploadedFile { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

@@ -28,6 +28,8 @@ namespace Projekt.Pages
 
         public IList<Post> Posts { get; set; }
 
+        public List<FileEntity> FileEntities { get; set; } = default!;
+
         public IFormFile UploadedFile { get; set; }
 
         public async Task<IActionResult> OnPostReject(int id)

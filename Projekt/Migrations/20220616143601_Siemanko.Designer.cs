@@ -12,8 +12,8 @@ using Projekt.Data;
 namespace Projekt.Migrations
 {
     [DbContext(typeof(ShelterDbContext))]
-    [Migration("20220615155842_InitFileEntities")]
-    partial class InitFileEntities
+    [Migration("20220616143601_Siemanko")]
+    partial class Siemanko
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,10 +61,7 @@ namespace Projekt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AnimalsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AnimalsaId")
+                    b.Property<int>("AnimalsId")
                         .HasColumnType("int");
 
                     b.Property<string>("FilePath")
@@ -80,13 +77,13 @@ namespace Projekt.Migrations
 
             modelBuilder.Entity("Projekt.Models.Job", b =>
                 {
-                    b.Property<int>("JobId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("JobAccepted")
+                    b.Property<bool?>("JobAccepted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("JobEndDate")
@@ -99,10 +96,10 @@ namespace Projekt.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WorkerId")
-                        .HasColumnType("int");
+                    b.Property<string>("WorkerMail")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("JobId");
+                    b.HasKey("Id");
 
                     b.ToTable("Jobs");
                 });
@@ -171,7 +168,9 @@ namespace Projekt.Migrations
                 {
                     b.HasOne("Projekt.Models.Animals", null)
                         .WithMany("FilePaths")
-                        .HasForeignKey("AnimalsId");
+                        .HasForeignKey("AnimalsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Projekt.Models.Animals", b =>

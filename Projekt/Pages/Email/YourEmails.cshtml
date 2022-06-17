@@ -1,8 +1,6 @@
 ﻿@page
-@model Projekt.Pages.Email.IndexModel
-
+@model Projekt.Pages.Email.YourEmailsModel
 @{
-    ViewData["Title"] = "Index";
 }
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,28 +20,13 @@
 
 <div class="">
     <h1>Skrzynka odbiorcza</h1>
-
     <br />
-    <div>
-        <a asp-page="./SendEmail">
-            <h6>Utwórz wiadomość <img src="MailIcon.png" width="32" height="32" /></h6>
-        </a>
-    </div>
-
-    <div>
-        <a asp-page="./YourEmails">
-            <h6>Wysłanie wiadomości <img src="MailIcon2.png" width="32" height="32" /></h6>
-        </a>
-    </div>
-
-
-    <br />
-    <h4>Nowe wiadomości</h4>
+    <h4>Twoje wiadomości</h4>
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    Od:
+                    Do:
                 </th>
                 <th>
                     Tytuł:
@@ -53,7 +36,7 @@
                 </th>
 
                 <th>
-                    Data odbioru:
+                    Data nadania:
                 </th>
                 <th></th>
             </tr>
@@ -63,7 +46,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SenderId)
+                        @Html.DisplayFor(modelItem => item.ReceiverId)
                     </td>
                     <td>
                         <a asp-page="./Details" asp-route-id="@item.Id">
@@ -82,4 +65,3 @@
         </tbody>
     </table>
 </div>
-
