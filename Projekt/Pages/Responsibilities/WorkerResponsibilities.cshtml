@@ -32,22 +32,22 @@
     <thead>
         <tr>
             <th>
-                Start
+                @Html.DisplayNameFor(model => model.Jobs[0].JobStartDate)
             </th>
             <th>
-                Koniec
+                @Html.DisplayNameFor(model => model.Jobs[0].JobEndDate)
             </th>
             <th>
-                Obowiązek
+                @Html.DisplayNameFor(model => model.Jobs[0].Responsibility)
             </th>
             <th>
-                Status
+                @Html.DisplayNameFor(model => model.Jobs[0].JobAccepted)
             </th>
             <th></th>
         </tr>
     </thead>
 
-    <tbody>
+    <tbody> 
         @foreach (var item in Model.Jobs)
         {
             @if (String.Equals(@item.WorkerMail, User.Identity.Name))
@@ -63,17 +63,12 @@
                         @Html.DisplayFor(modelItem => item.Responsibility)
                     </td>
                     <td>
-                        @if(@item.JobAccepted==null)
-                        {
-                        <button type="button" class="btn btn-secondary" style="pointer-events: none;">Oczekuje</button>
-                        }
-                        else
-                        {
-                        <button type="button" class="btn btn-success" style="pointer-events: none;">Zaakceptowano</button>
-                        }
+                        @Html.DisplayFor(modelItem => item.JobAccepted)
                     </td>
                     <td>
-                        <a asp-page="./CancelResponsibility" asp-route-id="@item.Id"><input type="submit" value="Usuń" class="btn btn-danger" /></a>
+                        {
+                        <a asp-page="./CancelResponsibility" asp-route-id="@item.Id">Delete</a>
+                        }
                     </td>
                 </tr>
             }

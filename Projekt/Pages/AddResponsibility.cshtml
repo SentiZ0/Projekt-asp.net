@@ -16,19 +16,19 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            Start:
+            @Html.DisplayNameFor(model => model.Job.JobStartDate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Job.JobStartDate)
         </dd>
         <dt class="col-sm-2">
-            Koniec:
+            @Html.DisplayNameFor(model => model.Job.JobEndDate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Job.JobEndDate)
         </dd>
         <dt class="col-sm-2">
-            Obowiązek:
+            @Html.DisplayNameFor(model => model.Job.Responsibility)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Job.Responsibility)
@@ -37,8 +37,7 @@
 
     <form method="post">
         <input type="hidden" asp-for="Job.Id" />
-        <input type="submit" value="Tak" class="btn btn-primary" />
-
-        <a asp-page="./JobSchedule">Wróć <class="btn btn-light" /></a>
+        <input type="submit" value="Add" class="btn btn-danger" /> |
+        <a asp-page="./JobSchedule">Back to List</a>
     </form>
 </div>

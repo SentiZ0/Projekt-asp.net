@@ -32,13 +32,13 @@
     <thead>
         <tr>
             <th>
-                Start
+                @Html.DisplayNameFor(model => model.Jobs[0].JobStartDate)
             </th>
             <th>
-                Koniec
+                @Html.DisplayNameFor(model => model.Jobs[0].JobEndDate)
             </th>
             <th>
-                Obowiązek
+                @Html.DisplayNameFor(model => model.Jobs[0].Responsibility)
             </th>
             <th></th>
         </tr>
@@ -47,6 +47,8 @@
     <tbody> 
         @foreach (var item in Model.Jobs)
         {
+            @if (@item.WorkerMail==null)
+            {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.JobStartDate)
@@ -58,16 +60,12 @@
                         @Html.DisplayFor(modelItem => item.Responsibility)
                     </td>
                     <td>
-                     @if (@item.WorkerMail==null)
-                     {
-                        <a asp-page="./AddResponsibility" asp-route-id="@item.Id"><input type="submit" value="Wybierz" class="btn btn-primary" /></a>
-                    }
-                    else
-                    {
-                        <button type="button" class="btn btn-secondary" style="pointer-events: none;">Zarezerwowane</button>
-                    }
-                </td>
+                        {
+                        <a asp-page="./AddResponsibility" asp-route-id="@item.Id">Wybierz</a>
+                        }
+                    </td>
                 </tr>
+            }
         }
     </tbody>
 </table>
