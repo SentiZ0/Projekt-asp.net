@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
 using Projekt.Models;
+using Projekt.Pages.Email;
 
 namespace Projekt.Pages.ManageResponsibilities
 {
@@ -10,6 +11,8 @@ namespace Projekt.Pages.ManageResponsibilities
     {
         private readonly Projekt.Data.ShelterDbContext _context;
 
+        [BindProperty]
+        public Letterbox Letterbox { get; set; }
         public DeleteApplicationModel(Projekt.Data.ShelterDbContext context)
         {
             _context = context;
@@ -17,7 +20,7 @@ namespace Projekt.Pages.ManageResponsibilities
 
         [BindProperty]
         public Job Job { get; set; }
-  
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             Job = await _context.Jobs.FindAsync(id);
@@ -42,17 +45,19 @@ namespace Projekt.Pages.ManageResponsibilities
             {
                 return NotFound();
             }
-            
-
-                if (Job != null)
-                {
-                        Job.WorkerMail = null;
-                        Job.JobAccepted = null;
-                        _context.Jobs.Update(Job);
-                        await _context.SaveChangesAsync();
-                        return RedirectToPage("./ApproveResponsibility");
-                }
-
+            if (Job != null)
+            {
+                Letterbox.SenderId = "Zarząd Schroniska";
+                Letterbox.MailDate = DateTime.Now;
+                Letterbox.ReceiverId = Job.WorkerMail;
+                Letterbox.Title = "Odrzucenie Zgłoszenia.";
+                _context.Letterboxes.Add(Letterbox);
+                Job.WorkerMail = null;
+                Job.JobAccepted = null;
+                _context.Jobs.Update(Job);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./ApproveResponsibility");
+            }
             return RedirectToPage("./ApproveResponsibility");
         }
     }
