@@ -22,61 +22,110 @@
         font-size: 15px;
     }
 
-    table, th, td {
-        border: 1px solid black;
-        width: 10px;
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        min-width: 350px;
+    }
+
+        table tr th,
+        table tr td {
+            border-right: 1px solid #bbb;
+            border-bottom: 1px solid #bbb;
+            padding: 5px;
+        }
+
+            table tr th:first-child,
+            table tr td:first-child {
+                border-left: 1px solid #bbb;
+            }
+
+        table tr th {
+            background: #eee;
+            border-top: 1px solid #bbb;
+        }
+
+        /* top-left border-radius */
+        table tr:first-child th:first-child {
+            border-top-left-radius: 6px;
+        }
+
+        /* top-right border-radius */
+        table tr:first-child th:last-child {
+            border-top-right-radius: 6px;
+        }
+
+        /* bottom-left border-radius */
+        table tr:last-child td:first-child {
+            border-bottom-left-radius: 6px;
+        }
+
+        /* bottom-right border-radius */
+        table tr:last-child td:last-child {
+            border-bottom-right-radius: 6px;
+        }
+
+    a {
+        color: inherit; /* blue colors for links too */
+        text-decoration: inherit; /* no underline */
+    }
+
+    .font-style {
+        font-family: 'Space Mono', monospace;
     }
 
 </style>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Start
-            </th>
-            <th>
-                Koniec
-            </th>
-            <th>
-                Obowiązek
-            </th>
-            <th>
-                Status
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+<div class="text-center font-style">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Rozpoczęcie
+                </th>
+                <th>
+                    Zakończenie
+                </th>
+                <th>
+                    Obowiązek
+                </th>
+                <th>
+                    Status
+                </th>
+                <th></th>
+            </tr>
+        </thead>
 
-    <tbody>
-        @foreach (var item in Model.Jobs)
-        {
-            @if (String.Equals(@item.WorkerMail, User.Identity.Name))
+        <tbody>
+            @foreach (var item in Model.Jobs)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.JobStartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.JobEndDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Responsibility)
-                    </td>
-                    <td>
-                        @if(@item.JobAccepted==null)
-                        {
-                        <button type="button" class="btn btn-secondary" style="pointer-events: none;">Oczekuje</button>
-                        }
-                        else
-                        {
-                        <button type="button" class="btn btn-success" style="pointer-events: none;">Zaakceptowano</button>
-                        }
-                    </td>
-                    <td>
-                        <a asp-page="./CancelResponsibility" asp-route-id="@item.Id"><input type="submit" value="Usuń" class="btn btn-danger" /></a>
-                    </td>
-                </tr>
+                @if (String.Equals(@item.WorkerMail, User.Identity.Name))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobStartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobEndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Responsibility)
+                        </td>
+                        <td>
+                            @if (@item.JobAccepted == null)
+                            {
+                                <button type="button" class="btn btn-secondary" style="pointer-events: none;">Oczekuje</button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-success" style="pointer-events: none;">Zaakceptowano</button>
+                            }
+                        </td>
+                        <td>
+                            <a asp-page="./CancelResponsibility" asp-route-id="@item.Id"><input type="submit" value="Usuń" class="btn btn-danger" /></a>
+                        </td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
