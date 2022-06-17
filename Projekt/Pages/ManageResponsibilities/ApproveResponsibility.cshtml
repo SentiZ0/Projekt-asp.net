@@ -1,7 +1,7 @@
 ﻿@page
-@model WorkerResponsibilityModel
+@model ApproveResponsibilityModel
 @{
-    ViewData["Title"] = "Twoje Obowiązki";
+    ViewData["Title"] = "Chętni do obowiązków";
 }
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,16 +41,18 @@
                 Obowiązek
             </th>
             <th>
+                Mail Pracowika
+            </th>
+            <th>
                 Status
             </th>
-            <th></th>
         </tr>
     </thead>
 
     <tbody>
         @foreach (var item in Model.Jobs)
         {
-            @if (String.Equals(@item.WorkerMail, User.Identity.Name))
+            @if (@item.WorkerMail != null)
             {
                 <tr>
                     <td>
@@ -63,6 +65,9 @@
                         @Html.DisplayFor(modelItem => item.Responsibility)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.WorkerMail)
+                    </td>
+                    <td>
                         @if(@item.JobAccepted==null)
                         {
                         <button type="button" class="btn btn-secondary" style="pointer-events: none;">Oczekuje</button>
@@ -73,7 +78,10 @@
                         }
                     </td>
                     <td>
-                        <a asp-page="./CancelResponsibility" asp-route-id="@item.Id"><input type="submit" value="Usuń" class="btn btn-danger" /></a>
+                        <a asp-page="./AcceptApplication" asp-route-id="@item.Id"><input type="submit" value="Zatwierdź" class="btn btn-primary" /></a>
+                    </td>
+                    <td>
+                        <a asp-page="./DeleteApplication" asp-route-id="@item.Id"><input type="submit" value="Odrzuć" class="btn btn-danger" /></a>
                     </td>
                 </tr>
             }

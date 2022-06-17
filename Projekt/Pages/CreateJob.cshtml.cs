@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Projekt.Models;
 using Projekt.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Projekt.Pages
 {
+    [Authorize]
     public class CreateJobModel : PageModel
     {
         private readonly ShelterDbContext _context;

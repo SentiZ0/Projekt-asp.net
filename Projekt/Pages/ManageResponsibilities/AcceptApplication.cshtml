@@ -1,5 +1,5 @@
 ﻿@page
-@model CancelResponsibilityModel
+@model AcceptApplicationModel
 @{
     ViewData["Title"] = "Home page";
 }
@@ -9,35 +9,41 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
 
- <h1>Cancel Responsibility</h1>
+ <h1>Akecptuj aplikację</h1>
  
-<h3>Jesteś pewien, że chcesz zrezygnować z danego obowiązku?</h3>
+<h3>Jesteś pewien, że chcesz akceptować aplikację?</h3>
 <div>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            Start
+            Start:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Job.JobStartDate)
         </dd>
         <dt class="col-sm-2">
-            Koniec
+            Koniec:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Job.JobEndDate)
         </dd>
         <dt class="col-sm-2">
-            Obowiązek
+            Obowiązek:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Job.Responsibility)
+        </dd>
+        <dt class="col-sm-2">
+            Pracownik:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.WorkerMail)
         </dd>
     </dl>
 
     <form method="post">
         <input type="hidden" asp-for="Job.Id" />
-        <input type="submit" value="Cancel" class="btn btn-danger" /> |
-        <a asp-page="./WorkerResponsibilities">Wróć <class="btn btn-light" /></a>
+        <input type="submit" value="Tak" class="btn btn-primary" /> |
+        <a asp-page="./ApproveResponsibility">Wróć <class="btn btn-light" /></a>
     </form>
 </div>
