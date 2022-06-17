@@ -57,10 +57,27 @@
         margin: 20px 0px;
         clear: left;
     }
-    .comments{
+
+    .comments {
         border-style: ridge;
         border-radius: 25px;
-        padding: 15px 20px;
+        padding: 10px 20px;
+    }
+
+    img {
+        width: 25%;
+        margin: auto;
+    }
+
+    .carousel-control-next,
+    .carousel-control-prev /*, .carousel-indicators */ {
+        filter: invert(100%);
+    }
+
+    .carouselImg img {
+        width: auto;
+        height: 225px;
+        max-height: 225px;
     }
 </style>
 
@@ -83,7 +100,31 @@
                     <h4 style="float: left;"><b>Opis:</b> @element.Description</h4>
                     <br>
                     <div class="text-center distance">
-                        @*<img src="@element.FilePath">*@
+                        <div id="carouselExample-@element.Id" class="carousel slide w-100 text-center" data-bs-ride="carousel" data-bs-interval="false">
+                            <div class="carousel-inner">
+                                @{
+                                    Boolean first = true;
+                                }
+                                @foreach (var item in element.FilePaths)
+                                {
+                                    <div class="carousel-item @( first ? "active" : "" )">
+                                        <div class="d-flex justify-content-center w-100 h-100 carouselImg">
+                                            <img class="d-block w-40 center-block" src="/@item.FilePath" alt="First slide">
+                                        </div>
+                                    </div>
+
+                                    first = false;
+                                }
+                            </div>
+                            <button class="carousel-control-prev" data-bs-target="#carouselExample-@element.Id" type="button" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" data-bs-target="#carouselExample-@element.Id" type="button" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                         <br>
                         <div class="distance">
                             <form method="post">
@@ -93,8 +134,8 @@
                         <br>
                         <div class="distance">
                             <form method="post">
-                                <label class="input" style="float: left; margin: 10px 0px;" asp-for="Post.Content"></label>
-                                <input type="text" style="margin: 10px 0px;" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź treść komentarza" asp-for="Post.Content" />
+                                <label class="input" style="float: left; margin: 10px 0px;" asp-for="@Model.Comment"></label>
+                                <input type="text" style="margin: 10px 0px;" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź treść komentarza" asp-for="@Model.Comment" />
                                 <button type="submit" id="button1" class="button inner" name="id" value="@element.Id"><span>Wyślij </span></button>
                             </form>
                         </div>
@@ -104,30 +145,35 @@
                         <h5 style="float: left; margin: 0px 0px 30px;">Komentarze</h5>
                         <br>
                         <div class="comments">
-                            @foreach (var item in Model.Posts)
+                            @if (element.Posts != null)
                             {
-                                @if (item.AnimalsId == element.Id)
+                                @foreach (var item in element.Posts)
                                 {
-                                    <div class="form-group post-distance">
-                                        @if (@item.UserName == null)
-                                        {
-                                            <h6 style="float: left;">Użytkownik</h6>
-                                        }
-                                        else
-                                        {
-                                            <h6 style="float: left;">@item.UserName</h6>
-                                        }
-                                        <input asp-for="@item.Content" class="form-control" disabled />
-                                        <span asp-validation-for="@item.Content" class="text-danger"></span>
-                                    </div>
+                                    @if (item.AnimalsId == element.Id)
+                                    {
+                                        <div class="form-group post-distance">
+                                            @if (@item.UserName == null)
+                                            {
+                                                <h6 style="float: left;">Użytkownik</h6>
+                                            }
+                                            else
+                                            {
+                                                <h6 style="float: left;">@item.UserName</h6>
+                                            }
+                                            <input asp-for="@item.Content" class="form-control" disabled />
+                                            <span asp-validation-for="@item.Content" class="text-danger"></span>
+                                        </div>
+                                    }
                                 }
                             }
+                            else
+                            {
+                                <h6>Brak komentarzy</h6>
+                            }
                         </div>
-
                     </div>
                 </div>
             }
         </ul>
-
     }
 </div>

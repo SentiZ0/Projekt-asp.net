@@ -25,5 +25,7 @@ namespace Projekt.Models
         public bool Accepted { get; set; }
 
         public List<FileEntity> FilePaths { get; set; }
+
+        public List<Post> Posts { get; set; }
     }
 }

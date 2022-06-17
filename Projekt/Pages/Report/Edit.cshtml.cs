@@ -97,14 +97,19 @@ namespace Projekt.Pages.Report
             {
                 return NotFound();
             }
-            var animals = await _context.Animals.FindAsync(id);
+           
+            var animals = await _context.Animals.Include(a=>a.Posts).Include(a=>a.FilePaths).FirstOrDefaultAsync(m => m.Id == id);
 
-            //string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{animals.FilePath}";
+            foreach(var item in animals.FilePaths)
+            {
+                string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{item.FilePath}";
 
-            //if (System.IO.File.Exists(targetFileName))
-            //{
-            //    System.IO.File.Delete(targetFileName);
-            //}
+                if (System.IO.File.Exists(targetFileName))
+                {
+                    System.IO.File.Delete(targetFileName);
+                }
+            }
+
 
             if (animals != null)
             {

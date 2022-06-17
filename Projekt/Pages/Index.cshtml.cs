@@ -21,16 +21,14 @@ namespace Projekt.Pages
 
         public Animals Animal { get; set; } = default!;
 
-        [BindProperty]
-        public Post Post { get; set; }
-
         public IList<Animals> Animals { get; set; }
 
         public IList<Post> Posts { get; set; }
 
         public List<FileEntity> FileEntities { get; set; } = default!;
 
-        public IFormFile UploadedFile { get; set; }
+        [BindProperty]
+        public string Comment { get; set; }
 
         public async Task<IActionResult> OnPostReject(int id)
         {
@@ -38,14 +36,18 @@ namespace Projekt.Pages
             {
                 return NotFound();
             }
-            var animal = await _context.Animals.FindAsync(id);
+            var animal = await _context.Animals.Include(m => m.Posts).Include(m => m.FilePaths).FirstOrDefaultAsync(m => m.Id == id);
 
-            //string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{animal.FilePath}";
+            foreach (var item in animal.FilePaths)
+            {
+                string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{item.FilePath}";
 
-            //if (System.IO.File.Exists(targetFileName))
-            //{
-            //    System.IO.File.Delete(targetFileName);
-            //}
+                if (System.IO.File.Exists(targetFileName))
+                {
+                    System.IO.File.Delete(targetFileName);
+                }
+            }
+
 
             if (animal != null)
             {
@@ -57,13 +59,18 @@ namespace Projekt.Pages
             return RedirectToPage("./Index");
         }
 
-        public IActionResult OnPost(int id)
-        {
-            Post.AnimalsId = id;
-            Post.PostDate = DateTime.Now;
-            Post.UserName = User.Identity.Name;
+        public async Task<IActionResult> OnPostAsync(int id)
+         {
+            var Animal = await _context.Animals.Include(m => m.Posts).Include(m => m.FilePaths).FirstOrDefaultAsync(m => m.Id == id);
+            var post = new Post();
 
-            _context.Posts.Add(Post);
+            post.Content = Comment;
+            post.PostDate = DateTime.Now;
+            post.UserName = User.Identity.Name;
+
+            Animal.Posts.Add(post);
+
+            _context.Attach(Animal).State = EntityState.Modified;
             _context.SaveChanges();
 
             return RedirectToPage("./Index");
@@ -71,9 +78,11 @@ namespace Projekt.Pages
 
         public async Task OnGetAsync()
         {
-            Animals = await _context.Animals.Where(a=>a.Accepted).OrderByDescending(a=>a.ReportDate).ToListAsync();
+            Animals = await _context.Animals.Where(a => a.Accepted).OrderByDescending(a => a.ReportDate).ToListAsync();
 
             Posts = await _context.Posts.ToListAsync();
+
+            FileEntities = await _context.FileEntities.ToListAsync();
         }
     }
 }
