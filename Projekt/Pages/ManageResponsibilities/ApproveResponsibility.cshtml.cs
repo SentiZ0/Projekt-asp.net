@@ -7,7 +7,7 @@ using Projekt.Models;
 
 namespace Projekt.Pages.ManageResponsibilities
 {
-    [Authorize]
+    [Authorize(Policy="AdminOnly")]
     public class ApproveResponsibilityModel : PageModel
     {
         private readonly Projekt.Data.ShelterDbContext _context;

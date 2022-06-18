@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Projekt.Data;
@@ -5,6 +6,7 @@ using Projekt.Models;
 
 namespace Projekt.Pages
 {
+    [Authorize]
     public class SendEmailModel : PageModel
     {
         private readonly ShelterDbContext _context;

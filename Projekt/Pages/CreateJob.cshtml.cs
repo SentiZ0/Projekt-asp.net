@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Projekt.Pages
 {
-    [Authorize]
+    [Authorize(Policy = "AdminOnly")]
     public class CreateJobModel : PageModel
     {
         private readonly ShelterDbContext _context;
@@ -21,10 +21,13 @@ namespace Projekt.Pages
         public Job Job { get; set; }
 
 
-        public async Task OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             _context.Jobs.Add(Job);
             _context.SaveChanges();
+
+            return RedirectToPage("./CreateJob");
         }
+
     }
 }

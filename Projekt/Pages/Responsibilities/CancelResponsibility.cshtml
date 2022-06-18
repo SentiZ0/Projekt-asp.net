@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
 
- <h1>Cancel Responsibility</h1>
+ <h1>Anulowanie rezerwacji obowiązku</h1>
  
-<h3>Jesteś pewien, że chcesz zrezygnować z danego obowiązku?</h3>
+<h3>Czy na pewno chcesz anulować rezerwację danego obowiązku?</h3>
 <div>
     <hr />
     <dl class="row">
@@ -37,7 +37,7 @@
 
     <form method="post">
         <input type="hidden" asp-for="Job.Id" />
-        <input type="submit" value="Cancel" class="btn btn-danger" /> |
-        <a asp-page="./WorkerResponsibilities">Wróć <class="btn btn-light" /></a>
+        <input type="submit" value="Tak" class="btn btn-danger" /> 
+        <a asp-page="./WorkerResponsibilities"><button type="button" class="btn btn-secondary">Wróć</button> </a>
     </form>
 </div>

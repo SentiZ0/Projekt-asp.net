@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
@@ -6,6 +7,7 @@ using Projekt.Models;
 
 namespace Projekt.Pages
 {
+    [Authorize]
     public class AddResponsibilityModel : PageModel
     {
         private readonly Projekt.Data.ShelterDbContext _context;

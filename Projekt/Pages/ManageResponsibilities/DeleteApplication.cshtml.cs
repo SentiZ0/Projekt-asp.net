@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
@@ -7,6 +8,7 @@ using Projekt.Pages.Email;
 
 namespace Projekt.Pages.ManageResponsibilities
 {
+    [Authorize(Policy = "AdminOnly")]
     public class DeleteApplicationModel : PageModel
     {
         private readonly Projekt.Data.ShelterDbContext _context;
@@ -50,7 +52,7 @@ namespace Projekt.Pages.ManageResponsibilities
                 Letterbox.SenderId = "Zarząd Schroniska";
                 Letterbox.MailDate = DateTime.Now;
                 Letterbox.ReceiverId = Job.WorkerMail;
-                Letterbox.Title = "Odrzucenie Zgłoszenia.";
+                Letterbox.Title = "Odrzucenie Zgłoszenia: "+Job.Responsibility;
                 _context.Letterboxes.Add(Letterbox);
                 Job.WorkerMail = null;
                 Job.JobAccepted = null;
