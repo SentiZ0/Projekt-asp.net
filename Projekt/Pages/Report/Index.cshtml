@@ -10,12 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
 <style>
-    .text-style{
+    .text-style {
         font-family: 'Space Mono', monospace;
+    }
+
+    p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
     }
 </style>
 
-<div class = "text-style">
+<div class="text-style">
     <h1>Lista nowych zgłoszeń</h1>
     <br />
 
@@ -42,7 +49,7 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                       <p>@item.Description</p>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ReportDate)

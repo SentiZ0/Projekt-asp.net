@@ -1,0 +1,67 @@
+﻿@page
+@model Projekt.Pages.Email.ResponseModel
+@{
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    .font-style {
+        font-family: 'Space Mono', monospace;
+    }
+
+    .distance {
+        margin: 20px 0px;
+    }
+
+    #button1 {
+        background-color: #1873f2
+    }
+
+    #button3 {
+        background-color: #9dacc2;
+    }
+</style>
+
+<div class="font-style">
+    <link rel="stylesheet" href="~/css/Buttons.css" />
+    <h4>Skrzynka pocztowa</h4>
+    <h6>Odpowiedź na mail użytkownika: @Model.Letterbox.SenderId</h6>
+    <hr />
+    <div>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Letterbox.Title)
+        </dt>
+        <h6>@Model.Letterbox.Title</h6>
+    </div>
+
+    <div class="distance">
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Letterbox.MailDate)
+        </dt>
+        <h6>@Model.Letterbox.MailDate</h6>
+    </div>
+
+    <div class="distance">
+        <form method="post">
+            <div class="distance">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Letterbox.Title)
+                </dt>
+                <input type="text" class="form-control" id="formGroupExampleInput" onfocus="this.value=''" value="Tytuł" asp-for="Letterbox.Title" />
+            </div>
+            <div class="distance">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Letterbox.Content)
+                </dt>
+                <input type="text" class="form-control" id="formGroupExampleInput" onfocus="this.value=''" value="Treść wiadomości" asp-for="Letterbox.Content" />
+            </div>
+            <div class="distance">
+                <button type="submit" id="button1" class="button inner submit" value="@Model.Letterbox.Id" name="id"><span>Zatwierdź</span></button>
+                <button type="submit" id="button3" class="button inner left-size" value="@Model.Letterbox.Id" name="Id" asp-page-handler="Return"><span>Powrót </span></button>
+            </div>
+        </form>
+    </div>
+</div>

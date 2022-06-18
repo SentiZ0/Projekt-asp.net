@@ -18,12 +18,14 @@ namespace Projekt.Models
         [MaxLength(385)]
         public string Content { get; set; }
 
+        [Display(Name = "Data przesłania")]
         public DateTime MailDate { get; set; }
 
+        [Display(Name = "Adresat")]
         public string SenderId { get; set; }
 
         [Required]
-        [Display(Name = "Adresat")]
+        [Display(Name = "Odbiorca")]
         public string ReceiverId { get; set; }
     }
 }

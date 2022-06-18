@@ -5,45 +5,77 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
-<div>
-    <h4>Letterbox</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Letterbox.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Letterbox.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Letterbox.Content)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Letterbox.Content)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Letterbox.MailDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Letterbox.MailDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Letterbox.SenderId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Letterbox.SenderId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Letterbox.ReceiverId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Letterbox.ReceiverId)
-        </dd>
-    </dl>
+<style>
+    .ow-break-word {
+        overflow-wrap: break-word;
+    }
+
+    .font-style {
+        font-family: 'Space Mono', monospace;
+    }
+
+    .distance {
+        margin: 20px 0px;
+    }
+        #button1 {
+        background-color: #1873f2
+    }
+
+    #button3 {
+        background-color: #9dacc2;
+    }
+</style>
+
+<div class="font-style">
+    <link rel="stylesheet" href="~/css/Buttons.css" />
+    <h4>Skrzynka pocztowa</h4>
+
+    <div>
+        <h6>Mail użytkownika @Model.Letterbox.SenderId</h6>
+        <hr />
+        <div>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Letterbox.Title)
+            </dt>
+            <h6>@Model.Letterbox.Title</h6>
+        </div>
+        <div class="distance">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Letterbox.SenderId)
+            </dt>
+            <h6>@Model.Letterbox.SenderId</h6>
+        </div>
+        <div class="distance">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Letterbox.MailDate)
+            </dt>
+            <h6>@Model.Letterbox.MailDate</h6>
+        </div>
+        <div class="distance">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Letterbox.Content)
+            </dt>
+            <h6 class="ow-break-word">@Model.Letterbox.Content</h6>
+        </div>
+    </div>
+    <div class="distance">
+        <form method="post">
+            <div class="btn-group button-distance">
+                <div class="form-group">
+                    <button type="submit" id="button1" class="button inner" asp-page-handler="Redirect" name="Id" value="@Model.Letterbox.Id"><span>Odpowiedz </span></button>
+                </div>
+                <div>
+                    <button type="submit" id="button3" class="button inner" asp-page-handler="Return"><span>Powrót </span></button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Letterbox?.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+
+
+
+

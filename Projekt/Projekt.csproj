@@ -25,7 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Email\Response.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Email\YourEmails.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Email\Response.cshtml" />
   </ItemGroup>
 
 </Project>

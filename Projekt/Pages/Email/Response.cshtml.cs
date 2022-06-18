@@ -1,7 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,16 +6,36 @@ using Projekt.Models;
 
 namespace Projekt.Pages.Email
 {
-    public class DetailsModel : PageModel
+    public class ResponseModel : PageModel
     {
         private readonly Projekt.Data.ShelterDbContext _context;
 
-        public DetailsModel(Projekt.Data.ShelterDbContext context)
+        public ResponseModel(ShelterDbContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
         public Letterbox Letterbox { get; set; } = default!;
+
+        public async Task<IActionResult> OnPost(int id)
+        {
+            var letterbox = await _context.Letterboxes.FirstOrDefaultAsync(m => m.Id == id);
+
+            Letterbox.ReceiverId = letterbox.SenderId;
+            Letterbox.SenderId = User.Identity.Name;
+            Letterbox.MailDate = DateTime.Now;
+
+            _context.Letterboxes.Add(Letterbox);
+            _context.SaveChanges();
+
+            return RedirectToPage("./Index");
+        }
+
+        public async Task<IActionResult> OnPostReturn(int Id)
+        {
+            return RedirectToPage("./Details", new { id = Id });
+        }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -38,16 +54,6 @@ namespace Projekt.Pages.Email
                 Letterbox = letterbox;
             }
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostRedirect(int Id)
-        {
-            return RedirectToPage("./Response", new { id = Id });
-        }
-
-        public async Task<IActionResult> OnPostReturn()
-        {
-            return RedirectToPage("./Index");
-        }
+        }        
     }
 }

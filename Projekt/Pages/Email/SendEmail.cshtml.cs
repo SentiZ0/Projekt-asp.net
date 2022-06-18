@@ -28,13 +28,14 @@ namespace Projekt.Pages
             _context.Letterboxes.Add(Letterbox);
             _context.SaveChanges();
 
-            return Page();
+            return RedirectToPage("./Index");
         }
 
         public async Task<IActionResult> OnPostReturn()
         {
             return RedirectToPage("./Index");
         }
+
         public void OnGet()
         {
         }

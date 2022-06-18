@@ -18,9 +18,16 @@
     .font-style {
         font-family: 'Space Mono', monospace;
     }
+
+    p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
 </style>
 
-<div class="">
+<div class="font-style">
     <h1>Skrzynka odbiorcza</h1>
 
     <br />
@@ -32,7 +39,7 @@
 
     <div>
         <a asp-page="./YourEmails">
-            <h6>Wysłanie wiadomości <img src="MailIcon2.png" width="32" height="32" /></h6>
+            <h6>Wysłane wiadomości <img src="MailIcon2.png" width="32" height="32" /></h6>
         </a>
     </div>
 
@@ -49,10 +56,6 @@
                     Tytuł:
                 </th>
                 <th>
-
-                </th>
-
-                <th>
                     Data odbioru:
                 </th>
                 <th></th>
@@ -67,12 +70,9 @@
                     </td>
                     <td>
                         <a asp-page="./Details" asp-route-id="@item.Id">
-                            @Html.DisplayFor(modelItem => item.Title)
+                            <p>@item.Title</p>
                         </a>
                     </td>
-                    <th>
-
-                    </th>
                     <td>
                         @Html.DisplayFor(modelItem => item.MailDate)
                     </td>
