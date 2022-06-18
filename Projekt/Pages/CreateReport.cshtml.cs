@@ -60,17 +60,10 @@ namespace Projekt.Pages
 
                 string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{formFile.FileName}";
 
-                while (stopLoop != false)
+                while (System.IO.File.Exists(targetFileName))
                 {
-                    if (System.IO.File.Exists(targetFileName))
-                    {
-                        fileCounter++;
-                        targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{formFile.FileName}";
-                    }
-                    else
-                    {
-                        stopLoop = false;
-                    }
+                    fileCounter++;
+                    targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{formFile.FileName}";
                 }
 
                 using (var stream = new FileStream(targetFileName, FileMode.Create))
