@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
 
- <h1>Odrzuć aplikację</h1>
- 
+<h1>Odrzuć aplikację</h1>
+
 <h3>Jesteś pewien, że chcesz odrzucić aplikację?</h3>
 <div>
     <hr />
@@ -40,13 +40,27 @@
             @Html.DisplayFor(model => model.Job.WorkerMail)
         </dd>
     </dl>
+    <div>
+        <form method="post">
+            <label class="input" asp-for="Letterbox.Content"></label>
+            <textarea class="form-control input-desc" placeholder="Powód odrzucenia zgłoszenia" asp-for=Letterbox.Content></textarea><br />
 
-    <form method="post">
-        <label class="input" asp-for="Letterbox.Content"></label>
-        <textarea class="form-control input-desc" required placeholder="Powód odrzucenia zgłoszenia" asp-for=Letterbox.Content></textarea><br />    
-       
-        <input type="hidden" asp-for="Job.Id" />
-        <input type="submit" value="Tak" class="btn btn-danger" /> 
-        <a asp-page="./ApproveResponsibility"><button type="button" class="btn btn-secondary">wróć</button> </a>
-    </form>
+            <input type="hidden" asp-for="Job.Id" />
+            <input type="submit" value="Tak" class="btn btn-danger" />
+            <a asp-page="./ApproveResponsibility"><button type="button" class="btn btn-secondary">wróć</button> </a>
+        </form>
+    </div>
+
+
+    <br />
+
+    <div>
+        @if (Model.AlertMessage != null)
+        {
+            <div class="alert alert-primary" role="alert">
+                <h6><b>Spróbuj ponownie</b></h6>
+                @Model.AlertMessage
+            </div>
+        }
+    </div>
 </div>

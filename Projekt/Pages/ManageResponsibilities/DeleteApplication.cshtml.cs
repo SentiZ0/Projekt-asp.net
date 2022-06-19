@@ -23,6 +23,7 @@ namespace Projekt.Pages.ManageResponsibilities
         [BindProperty]
         public Job Job { get; set; }
 
+        public string AlertMessage { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             Job = await _context.Jobs.FindAsync(id);
@@ -49,7 +50,12 @@ namespace Projekt.Pages.ManageResponsibilities
             }
             if (Job != null)
             {
-                Letterbox.SenderId = "Zarząd Schroniska";
+                if (Letterbox.Content == null)
+                {
+                    AlertMessage = "Musisz podać powód odrzucenia zgłoszenia.";
+                    return Page();
+                }
+                    Letterbox.SenderId = "Zarząd Schroniska";
                 Letterbox.MailDate = DateTime.Now;
                 Letterbox.ReceiverId = Job.WorkerMail;
                 Letterbox.Title = "Odrzucenie Zgłoszenia: "+Job.Responsibility;

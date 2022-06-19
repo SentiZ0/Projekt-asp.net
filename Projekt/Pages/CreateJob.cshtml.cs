@@ -20,14 +20,31 @@ namespace Projekt.Pages
         [BindProperty]
         public Job Job { get; set; }
 
+        public string AlertMessage { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
+
+            if(Job.JobStartDate<DateTime.Now)
+            {
+                AlertMessage = "Data rozpoczêcia nie mo¿e byæ wczeœniejsza ni¿ teraŸniejsza.";
+                return Page();
+            }
+            if(Job.JobEndDate<Job.JobStartDate)
+            {
+                AlertMessage = "Data zakoñczenia nie mo¿e byæ wczeœniejsza od daty rozpoczêcia.";
+                return Page();
+            }
+            if(Job.Responsibility==null)
+            {
+                AlertMessage = "Pole obowi¹zek nie mo¿e byæ puste.";
+                return Page();
+            }
+
             _context.Jobs.Add(Job);
             _context.SaveChanges();
 
             return RedirectToPage("./CreateJob");
         }
-
     }
 }
