@@ -1,0 +1,81 @@
+﻿@page
+@model Projekt.Pages.AdoptAdModel
+@{
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    .post {
+        margin: 40px 0px;
+        font-family: 'Space Mono', monospace;
+    }
+
+    img {
+        margin: 20px 0px;
+        max-width: 75%;
+        max-height: 100%;
+        clear:
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    h4 {
+        font-size: 15px;
+        clear: left;
+    }
+
+    .distance {
+        margin: 50px 0px;
+    }
+
+    .hej {
+        border-style: ridge;
+        margin: 25px 0px;
+        padding: 20px;
+        border-radius: 25px;
+    }
+
+    #button2 {
+        background-color: #f2182a;
+        float: left;
+        clear: left;
+    }
+
+    #button1 {
+        background-color: #1873f2;
+        float: left;
+        clear: left;
+    }
+
+    .post-distance {
+        margin: 20px 0px;
+        clear: left;
+    }
+</style>
+<div>
+    <h1 class="display-4" style="font-family: 'Space Mono', monospace;">Ogłoszenia adopcyjne</h1>
+</div>
+<div class="text-center post">
+    <link rel="stylesheet" href="~/css/Buttons.css" />
+    <link rel="stylesheet" href="~/css/Border.css" />
+    @if (Model.AdoptAnimals != null)
+    {
+        <ul>
+            @foreach (var element in Model.AdoptAnimals)
+            {
+                <div class="hej">
+                    <h2 style="float: left;"><b>@element.Name gotowy do adopcji. </b></h2>
+                    <h4 style="float: left;"><b>Gatunek:</b> @element.Species</h4>
+                    <h4 style="float: left;"><b>Rasa:</b> @element.Breed</h4>
+                    <h4 style="float: left;"><b>Wiek:</b> @element.Age</h4>
+                    <h4 style="float: left;"><b>Opis:</b> @element.Description</h4>
+                </div>
+            }
+        </ul>
+    }
+</div>

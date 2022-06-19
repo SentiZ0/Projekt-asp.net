@@ -8,6 +8,7 @@ namespace Projekt.Data
         public ShelterDbContext(DbContextOptions options) : base(options) { }
        
         public DbSet<Animals> Animals { get; set; }
+        public DbSet<AdoptAnimals> AdoptAnimals { get; set; }
 
         public DbSet<Letterbox> Letterboxes { get; set; }
 

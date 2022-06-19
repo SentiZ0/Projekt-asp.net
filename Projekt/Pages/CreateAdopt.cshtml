@@ -1,0 +1,119 @@
+﻿@page
+@model Projekt.Pages.CreateAdoptModel
+@{
+}
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    .input {
+        margin: 10px 0px;
+        float: left;
+        font-family: 'Space Mono', monospace;
+    }
+
+    .input-desc {
+        margin: 10px 0px;
+        line-height: 40px: float: left;
+        font-family: 'Space Mono', monospace;
+        height: 100px;
+        top: 0;
+    }
+
+    .form-control {
+        margin: 5px 0px 10px;
+        float: left;
+        font-family: 'Space Mono', monospace;
+    }
+
+    h3 {
+        font-size: 15px;
+        font-family: 'Space Mono', monospace;
+    }
+
+    button {
+        margin: 15px 0px;
+        float: left;
+    }
+
+
+    #button1 {
+        background-color: #1873f2
+    }
+
+    #button2 {
+        background-color: #f2182a;
+    }
+
+    #button3 {
+        background-color: #9dacc2;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .post-image {
+        clear: left;
+        float: left;
+    }
+
+    .submit {
+        float: left;
+        margin: 40px 0px;
+        clear: left;
+    }
+
+    .alert {
+        clear: left;
+    }
+
+    .alert {
+        border-style: solid;
+        border: 3px;
+        font-family: 'Space Mono', monospace;
+    }
+
+    .button-distance {
+        margin: 400px 0px 0px;
+        clear: left;
+    }
+</style>
+
+<body>
+    <link rel="stylesheet" href="~/css/Buttons.css" />
+    <div>
+        <h2>Utwórz ogłoszenie</h2>
+        <h3>Tutaj możesz utworzyć ogłoszenie adopcyjne</h3>
+    </div>
+
+    <div class="text-center">
+        <form method="post" enctype="multipart/form-data">
+            <div>
+                <label class="input" asp-for="AdoptAnimals.Name"></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź imię zwierzaka" asp-for="AdoptAnimals.Name" />
+                <label class="input" asp-for="AdoptAnimals.Species"></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź gatunek zwierzaka" asp-for="AdoptAnimals.Species" />
+                <label class="input" asp-for="AdoptAnimals.Breed"></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź rasę zwierzaka" asp-for="AdoptAnimals.Breed" />
+                <label class="input" asp-for="AdoptAnimals.Age"></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź rasę zwierzaka" asp-for="AdoptAnimals.Age" />
+                <label class="input" asp-for="AdoptAnimals.Description"></label>
+                <textarea class="form-control input-desc" placeholder="Wprowadź opis zwierzaka" asp-for=AdoptAnimals.Description></textarea>
+            </div>
+            <div class="button-distance">
+                <button type="submit" style="margin: 30px 0px;" id="button1" class="button inner" name="id" value="AdoptAnimals.Id"><span>Zatwierdź</span></button>
+            </div>
+        </form>
+    </div>
+        @if (Model.AlertMessage != null)
+    {
+        <div class="alert alert-primary" role="alert">
+            <h6><b>Spróbuj ponownie</b></h6>
+            @Model.AlertMessage
+        </div>
+    }
+</body>
