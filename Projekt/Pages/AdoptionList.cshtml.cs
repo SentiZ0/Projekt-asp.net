@@ -24,6 +24,35 @@ namespace Projekt.Pages
 
         public List<AdoptionFileEntity> AdoptionFileEntities { get; set; }
 
+
+        public async Task<IActionResult> OnPostReject(int id)
+        {
+            if (id == null || _context.Adoptions == null)
+            {
+                return NotFound();
+            }
+            var adoption = await _context.Adoptions.Include(m => m.FilePaths).FirstOrDefaultAsync(m => m.Id == id);
+
+            foreach (var item in adoption.FilePaths)
+            {
+                string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{item.FilePath}";
+
+                if (System.IO.File.Exists(targetFileName))
+                {
+                    System.IO.File.Delete(targetFileName);
+                }
+            }
+
+
+            if (adoption != null)
+            {
+                Adoption = adoption;
+                _context.Adoptions.Remove(Adoption);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./AdoptionList");
+        }
         public async Task OnGetAsync()
         {
             Adoptions = await _context.Adoptions.OrderByDescending(a => a.AdoptionDate).ToListAsync();

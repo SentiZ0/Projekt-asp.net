@@ -56,6 +56,9 @@
         margin: 20px 0px;
         clear: left;
     }
+    .item-distance{
+        margin: 5px 0px 0px;
+    }
 
     .comments {
         border-style: ridge;
@@ -78,15 +81,19 @@
         height: 225px;
         max-height: 225px;
     }
-    .left-size{
+
+    .left-size {
         clear: left;
     }
-    .text-left-size{
+
+    .text-left-size {
+        clear: left;
         float: left;
     }
+
 </style>
 
-<h2>Zwierzęta do adopcji</h2>
+<h2 class="text-center">Zwierzęta do adopcji</h2>
 
 <div class="text-center post">
     <link rel="stylesheet" href="~/css/Buttons.css" />
@@ -139,42 +146,37 @@
                     <div class="left-size">
                         <h5 style="float: left;">Opis zwierzaka</h5>
                         <br>
-                        <div>
-                            <dt class="col-sm-4">
-                                @Html.DisplayNameFor(model => model.Adoption.Name)
-                            </dt>
-                            <h6 class="text-left-size">@element.Name</h6>
+                        <br>
+                        <div class="item-distance">
+                            <h6 style="float: left;"><b>Imię</b></h6><br>
+                            <h6 class="text-left-size" style="margin: 5px 0px;">@element.Name</h6>
                         </div>
                         <br>
-                        <div>
-                            <dt class="col-sm-4">
-                                @Html.DisplayNameFor(model => model.Adoption.Species)
-                            </dt>
-                            <h6 class="text-left-size">@element.Species</h6>
+                        <br>
+                        <div class="item-distance">
+                            <h6 style="float: left;"><b>Gatunek</b></h6><br>
+                            <h6 class="text-left-size" style="margin: 5px 0px;">@element.Species</h6>
                         </div>
                         <br>
-                        <div class="text-left-size">
-                            <dt class="col-sm-4">
-                                @Html.DisplayNameFor(model => model.Adoption.Breed)
-                            </dt>
-                            <h6>@element.Breed</h6>
+                        <br>
+                        <div class="item-distance">
+                            <h6 style="float: left;"><b>Rasa</b></h6><br>
+                            <h6 class="text-left-size" style="margin: 5px 0px;">@element.Breed</h6>
                         </div>
                         <br>
-                        <div class="text-left-size">
-                            <dt class="col-sm-4">
-                                @Html.DisplayNameFor(model => model.Adoption.Age)
-                            </dt>
-                            <h6>@element.Age</h6>
+                        <br>
+                        <div class="item-distance">
+                            <h6 style="float: left;"><b>Wiek</b></h6><br>
+                            <h6 class="text-left-size" style="margin: 5px 0px;">@element.Age</h6>
                         </div>
                         <br>
-                        <div class="text-left-size">
-                            <dt class="col-sm-4">
-                                @Html.DisplayNameFor(model => model.Adoption.Description)
-                            </dt>
-                            <h6>@element.Description</h6>
+                        <br>
+                        <div class="item-distance">
+                            <h6 style="float: left;"><b>Opis</b></h6><br>
+                            <h6 class="text-left-size" style="margin: 5px 0px;">@element.Description</h6>
                         </div>
                     </div>
-
+                    <br>
                 </div>
             }
         </ul>
