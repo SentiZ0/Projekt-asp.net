@@ -46,4 +46,9 @@
     <None Include="Pages\Email\YourEmailsDetails.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\ManageResponsibilities\" />
+    <Folder Include="Pages\Responsibilities\" />
+  </ItemGroup>
+
 </Project>

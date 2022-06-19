@@ -4,7 +4,7 @@ using Projekt.Models;
 using Projekt.Data;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Projekt.Pages
+namespace Projekt.Pages.Schedule
 {
     [Authorize(Policy = "AdminOnly")]
     public class CreateJobModel : PageModel

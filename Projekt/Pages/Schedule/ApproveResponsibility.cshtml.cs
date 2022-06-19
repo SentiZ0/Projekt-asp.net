@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
 using Projekt.Models;
 
-namespace Projekt.Pages.ManageResponsibilities
+namespace Projekt.Pages.Schedule
 {
     [Authorize(Policy="AdminOnly")]
     public class ApproveResponsibilityModel : PageModel

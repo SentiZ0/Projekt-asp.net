@@ -62,7 +62,7 @@
 
 <body>
     <div class="font-style">
-        <h2>A basic HTML table</h2>
+        <h2 class="text-center">Panel Admin</h2>
         <div class="text-center">
             <table style="width:100%">
                 <tr>
@@ -73,7 +73,7 @@
                         </a>
                     </th>
                     <th height="250" width="648">
-                        <a asp-page="/CreateAdoption">
+                        <a asp-page="/Announcement/CreateAdoption">
                             <h4>Utwórz zgłoszenie adopcyjne</h4><br />
                             <img src="/AddAdoption.png" width="64" height="64" />
                         </a>
@@ -81,13 +81,13 @@
                 </tr>
                 <tr>
                     <td height="250" width="648">
-                        <a asp-page="/CreateJob">
+                        <a asp-page="/Schedule/CreateJob">
                             <h4>Utwórz harmonogoram pracy</h4><br />
                             <img src="/AddJob.png" width="64" height="64" />
                         </a>
                     </td>
                     <td height="250" width="648">
-                        <a asp-page="/ManageResponsibilities/ApproveResponsibility">
+                        <a asp-page="/Schedule/ApproveResponsibility">
                             <h4>Rozpatrz zgłoszenia do pracy</h4><br />
                             <img src="/AcceptVolunteers.png" width="64" height="64" />
                         </a>
@@ -95,7 +95,5 @@
                 </tr>
             </table>
         </div>
-
-        <p>To undestand the example better, we have added borders to the table.</p>
     </div>
 </body>

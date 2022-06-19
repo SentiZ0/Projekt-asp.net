@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Projekt.Data;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Projekt.Pages
+namespace Projekt.Pages.Announcement
 {
     [Authorize(Policy = "AdminOnly")]
     public class CreateAdoptModel : PageModel
@@ -49,7 +49,7 @@ namespace Projekt.Pages
                     AlertMessage = "Nie wybrano/odnaleziono pliku.";
                     return;
                 }
-                else if (!(checkType.Contains("image")))
+                else if (!checkType.Contains("image"))
                 {
                     AlertMessage = "Wybrano niepoprawny format pliku. Obs³ugiwane formaty to gif/jpeg/png/webp.";
                     return;

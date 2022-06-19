@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
 using Projekt.Models;
 
-namespace Projekt.Pages.Responsibilities
+namespace Projekt.Pages.Schedule
 {
     [Authorize]
     public class WorkerResponsibilityModel : PageModel

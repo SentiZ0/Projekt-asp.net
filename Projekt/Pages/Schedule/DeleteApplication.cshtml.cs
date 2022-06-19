@@ -6,7 +6,7 @@ using Projekt.Data;
 using Projekt.Models;
 using Projekt.Pages.Email;
 
-namespace Projekt.Pages.ManageResponsibilities
+namespace Projekt.Pages.Schedule
 {
     [Authorize(Policy = "AdminOnly")]
     public class DeleteApplicationModel : PageModel

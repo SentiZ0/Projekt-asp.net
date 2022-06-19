@@ -26,16 +26,16 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/CreateReport">Utwórz zgłoszenie</a>
                         </li>
                         <li>
-                            <a class="nav-link text-dark" asp-area="" asp-page="/AdoptionList">Adopcja</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Announcement/AdoptionList">Adopcja</a>
                         </li>
                         <li>
                             <a class="nav-link text-dark" asp-area="" asp-page="/Email/Index">Skrzynka Odbiorcza</a>
                         </li>
                         <li>
-                            <a class="nav-link text-dark" asp-area="" asp-page="/JobSchedule">Harmonogram</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Schedule/JobSchedule">Harmonogram</a>
                         </li>
                         <li>
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Responsibilities/WorkerResponsibilities">Twoje obowiązki</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Schedule/WorkerResponsibilities">Twoje obowiązki</a>
                         </li>
                         @if (User.Identity.Name == "admin@gmail.com")
                         {
