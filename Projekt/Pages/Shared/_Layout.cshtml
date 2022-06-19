@@ -19,14 +19,11 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                                                <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/CreateReport">Utwórz zgłoszenie</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-page="/PanelAdmin">Panel admin</a>
                         </li>
                         <li>
                             <a class="nav-link text-dark" asp-area="" asp-page="/Email/Index">Skrzynka Odbiorcza</a>
@@ -37,6 +34,12 @@
                         <li>
                             <a class="nav-link text-dark" asp-area="" asp-page="/Responsibilities/WorkerResponsibilities">Twoje obowiązki</a>
                         </li>
+                        @if (User.Identity.Name == "admin@gmail.com")
+                        {
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/PanelAdmin">Panel admin</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -59,8 +62,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-      <script>
-        document.addEventListener("DOMContentLoaded", function(event) { 
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
             var scrollpos = localStorage.getItem('scrollpos');
             if (scrollpos) window.scrollTo(0, scrollpos);
         });

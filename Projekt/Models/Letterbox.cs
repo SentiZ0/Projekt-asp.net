@@ -9,11 +9,12 @@ namespace Projekt.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole jest obowiązkowe")]
         [Display(Name = "Tytuł")]
         [MaxLength(50)]
         public string Title { get; set; }
 
+        [Required(ErrorMessage = "Pole jest obowiązkowe")]
         [Display(Name = "Zawartość")]
         [MaxLength(385)]
         public string Content { get; set; }
@@ -24,7 +25,7 @@ namespace Projekt.Models
         [Display(Name = "Adresat")]
         public string SenderId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole jest obowiązkowe")]
         [Display(Name = "Odbiorca")]
         public string ReceiverId { get; set; }
     }

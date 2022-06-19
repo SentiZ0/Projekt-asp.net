@@ -9,7 +9,7 @@
 
 <style>
     .input {
-        margin: 15px 0px;
+        margin: 15px 0px 0px;
         float: left;
     }
 
@@ -39,9 +39,14 @@
     .left-size {
         float: left;
     }
-    
+
     .inner {
         display: inline-block;
+    }
+    .button-place{
+        float: left; 
+        clear: left;
+        margin: 15px 0px;
     }
 </style>
 
@@ -51,14 +56,25 @@
     <link rel="stylesheet" href="~/css/Buttons.css" />
     <form method="post">
         <div>
-            <label class="input" asp-for="Letterbox.ReceiverId"></label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź email adresata" asp-for="Letterbox.ReceiverId" />
-            <label class="input" asp-for="Letterbox.Title"></label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź tytuł" asp-for="Letterbox.Title" />
-            <label class="input" asp-for="Letterbox.Content"></label>
-            <textarea class="form-control input-desc" placeholder="Treść" asp-for=Letterbox.Content></textarea><br />    
+            <div>
+                <label class="input" asp-for="Letterbox.ReceiverId"></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź email adresata" asp-for="Letterbox.ReceiverId" />
+                <span asp-validation-for="Letterbox.ReceiverId" class="text-danger" style="float: left;"></span>
+            </div>
+            <div>
+                <label class="input" style="float: left; clear: left;" asp-for="Letterbox.Title"></label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź tytuł" asp-for="Letterbox.Title" />
+                <span asp-validation-for="Letterbox.Title" class="text-danger" style="float: left;"></span>
+            </div>
+            <div>
+                <label class="input" style="float: left; clear: left;" asp-for="Letterbox.Content"></label>
+                <textarea class="form-control input-desc" placeholder="Treść" asp-for=Letterbox.Content></textarea>
+                <span asp-validation-for="Letterbox.Content" class="text-danger" style="float: left;"></span>
+            </div>
+
+
         </div>
-        <div>
+        <div class="button-place">
             <button type="submit" id="button1" class="button inner submit"><span>Zatwierdź</span></button>
             <button type="submit" id="button3" class="button inner left-size" asp-page-handler="Return"><span>Powrót </span></button>
         </div>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
 using Projekt.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Projekt.Pages
 {
@@ -28,6 +29,7 @@ namespace Projekt.Pages
         public List<FileEntity> FileEntities { get; set; } = default!;
 
         [BindProperty]
+        [Display(Name="Dodaj komentarz")]
         public string Comment { get; set; }
 
         public async Task<IActionResult> OnPostReject(int id)

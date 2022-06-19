@@ -4,6 +4,9 @@
     ViewData["Title"] = "Home page";
 }
 
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
@@ -82,7 +85,7 @@
 </style>
 
 <div class="text-center">
-    <h1 class="display-4" style="font-family: 'Space Mono', monospace;">Aktualności</h1>
+    <h1 class="display-4">Aktualności</h1>
 </div>
 
 <div class="text-center post">
@@ -126,11 +129,14 @@
                             </button>
                         </div>
                         <br>
-                        <div class="distance">
-                            <form method="post">
-                                <button type="submit" id="button2" class="button inner" asp-page-handler="Reject" name="id" value="@element.Id"><span>Usuń post </span></button>
-                            </form>
-                        </div>
+                        @if (User.Identity.Name == "admin@gmail.com")
+                        {
+                            <div class="distance">
+                                <form method="post">
+                                    <button type="submit" id="button2" class="button inner" asp-page-handler="Reject" name="id" value="@element.Id"><span>Usuń post </span></button>
+                                </form>
+                            </div>
+                        }
                         <br>
                         <div class="distance">
                             <form method="post">

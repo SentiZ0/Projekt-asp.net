@@ -9,12 +9,12 @@ namespace Projekt.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole jest obowiązkowe")]
         [Display(Name = "Imię pupila")]
         [MaxLength(20)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole jest obowiązkowe")]
         [Display(Name = "Opis")]
         [MaxLength(385)]
         public string Description { get; set; }
@@ -24,6 +24,7 @@ namespace Projekt.Models
 
         public bool Accepted { get; set; }
 
+        [Display(Name = "Zdjęcia")]
         public List<FileEntity> FilePaths { get; set; }
 
         public List<Post> Posts { get; set; }

@@ -8,6 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
 <style>
+    .ow-break-word {
+        overflow-wrap: break-word;
+    }
+
     .font-style {
         font-family: 'Space Mono', monospace;
     }
@@ -36,14 +40,22 @@
         </dt>
         <h6>@Model.Letterbox.Title</h6>
     </div>
-
+    <div>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Letterbox.Content)
+        </dt>
+        <h6 class="ow-break-word">@Model.Letterbox.Content</h6>
+    </div>
     <div class="distance">
         <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Letterbox.MailDate)
         </dt>
         <h6>@Model.Letterbox.MailDate</h6>
     </div>
-
+    <hr />
+    <br />
+    <h4>Twoja odpowiedź</h4>
+    <hr />
     <div class="distance">
         <form method="post">
             <div class="distance">
@@ -51,12 +63,14 @@
                     @Html.DisplayNameFor(model => model.Letterbox.Title)
                 </dt>
                 <input type="text" class="form-control" id="formGroupExampleInput" onfocus="this.value=''" value="Tytuł" asp-for="Letterbox.Title" />
+                <span asp-validation-for="Letterbox.Title" class="text-danger" style="float: left;"></span>
             </div>
             <div class="distance">
                 <dt class="col-sm-4">
                     @Html.DisplayNameFor(model => model.Letterbox.Content)
                 </dt>
                 <input type="text" class="form-control" id="formGroupExampleInput" onfocus="this.value=''" value="Treść wiadomości" asp-for="Letterbox.Content" />
+                <span asp-validation-for="Letterbox.Title" class="text-danger" style="float: left;"></span>
             </div>
             <div class="distance">
                 <button type="submit" id="button1" class="button inner submit" value="@Model.Letterbox.Id" name="id"><span>Zatwierdź</span></button>

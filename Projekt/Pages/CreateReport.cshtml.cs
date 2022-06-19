@@ -27,8 +27,13 @@ namespace Projekt.Pages
         [BindProperty]
         public List<IFormFile> FormFiles { get; set; }
 
-        public async Task OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
+            if (Animals.Name == null || Animals.Description == null)
+            {
+                return Page();
+            }
+
             var files = new List<FileEntity>();
 
             foreach (var aformFile in FormFiles)
@@ -40,22 +45,21 @@ namespace Projekt.Pages
                 var fileSize = formFile.Length;
                 var checkType = formFile.ContentType;
                 var fileCounter = 1;
-                bool stopLoop = true;
 
                 if (formFile == null || formFile.Length == 0)
                 {
                     AlertMessage = "Nie wybrano/odnaleziono pliku.";
-                    return;
+                    return Page();
                 }
                 else if (!(checkType.Contains("image")))
                 {
                     AlertMessage = "Wybrano niepoprawny format pliku. Obs³ugiwane formaty to gif/jpeg/png/webp.";
-                    return;
+                    return Page();
                 }
                 else if (fileSize > 1048576)
                 {
                     AlertMessage = "Plik nie mo¿e przekraczaæ 10mb";
-                    return;
+                    return Page();
                 }
 
                 string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{formFile.FileName}";
@@ -72,7 +76,7 @@ namespace Projekt.Pages
                 }
 
                 fileEntity.FilePath = $"{fileCounter}{formFile.FileName}";
-                files.Add(fileEntity);
+                files.Add(fileEntity);             
             }
 
             Animals.ReportDate = DateTime.Now;
@@ -81,6 +85,8 @@ namespace Projekt.Pages
 
             _context.Animals.Add(Animals);
             _context.SaveChanges();
+
+            return Page();
         }
         public void OnGet()
         {

@@ -24,6 +24,11 @@ namespace Projekt.Pages
 
         public IActionResult OnPost()
         {
+            if(Letterbox.Title == null || Letterbox.Content == null || Letterbox.ReceiverId == null)
+            {
+                return Page();
+            }
+
             Letterbox.SenderId = User.Identity.Name;
             Letterbox.MailDate = DateTime.Now;
 
