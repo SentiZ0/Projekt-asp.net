@@ -86,30 +86,45 @@
 <body>
     <link rel="stylesheet" href="~/css/Buttons.css" />
     <div>
-        <h2>Utwórz ogłoszenie</h2>
-        <h3>Tutaj możesz utworzyć ogłoszenie adopcyjne</h3>
+        <h2>Utwórz ogłoszenie adopcyjne</h2>
     </div>
+
+    <hr />
 
     <div class="text-center">
         <form method="post" enctype="multipart/form-data">
             <div>
-                <label class="input" asp-for="AdoptAnimals.Name"></label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź imię zwierzaka" asp-for="AdoptAnimals.Name" />
-                <label class="input" asp-for="AdoptAnimals.Species"></label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź gatunek zwierzaka" asp-for="AdoptAnimals.Species" />
-                <label class="input" asp-for="AdoptAnimals.Breed"></label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź rasę zwierzaka" asp-for="AdoptAnimals.Breed" />
-                <label class="input" asp-for="AdoptAnimals.Age"></label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź wiek zwierzaka" asp-for="AdoptAnimals.Age" />
-                <label class="input" asp-for="AdoptAnimals.Description"></label>
-                <textarea class="form-control input-desc" placeholder="Wprowadź opis zwierzaka" asp-for=AdoptAnimals.Description></textarea>
+                <div>
+                    <label class="input" asp-for="Adoption.Name"></label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź imię zwierzaka" asp-for="Adoption.Name" />
+                </div>
+                <div>
+                    <label class="input" asp-for="Adoption.Species"></label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź gatunek zwierzaka" asp-for="Adoption.Species" />
+                </div>
+                <div>
+                    <label class="input" asp-for="Adoption.Breed"></label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź rasę zwierzaka" asp-for="Adoption.Breed" />
+                </div>
+                <div>
+                    <label class="input" asp-for="Adoption.Age"></label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź wiek zwierzaka" asp-for="Adoption.Age" />
+                </div>
+                <div>
+                    <label class="input" asp-for="Adoption.Description"></label>
+                    <textarea class="form-control input-desc" placeholder="Wprowadź opis zwierzaka" asp-for=Adoption.Description></textarea>
+                </div>
+                <div>
+                    <label class="input" style="float: left; clear: left;" asp-for="Adoption.FilePaths"></label>
+                    <input class="post-image" type="file" asp-for="@Model.FormFiles" multiple />
+                </div>
             </div>
             <div class="button-distance">
-                <button type="submit" style="margin: 30px 0px;" id="button1" class="button inner" name="id" value="AdoptAnimals.Id"><span>Zatwierdź</span></button>
+                <button type="submit" style="margin: 30px 0px;" id="button1" class="button inner" name="id" value="Adoption.Id"><span>Zatwierdź</span></button>
             </div>
         </form>
     </div>
-        @if (Model.AlertMessage != null)
+    @if (Model.AlertMessage != null)
     {
         <div class="alert alert-primary" role="alert">
             <h6><b>Spróbuj ponownie</b></h6>

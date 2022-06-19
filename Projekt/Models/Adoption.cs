@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projekt.Models
 {
-    public class AdoptAnimals
+    public class Adoption
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -34,6 +34,9 @@ namespace Projekt.Models
         [MaxLength(385)]
         public string Description { get; set; }
 
+        public DateTime AdoptionDate { get; set; }
+
+        public List<AdoptionFileEntity> FilePaths { get; set; }
 
     }
 }

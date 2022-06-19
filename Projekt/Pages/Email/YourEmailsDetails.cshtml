@@ -1,0 +1,73 @@
+﻿@page
+@model Projekt.Pages.Email.YourEmailsDetailsModel
+@{
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+    .ow-break-word {
+        overflow-wrap: break-word;
+    }
+
+    .font-style {
+        font-family: 'Space Mono', monospace;
+    }
+
+    .distance {
+        margin: 20px 0px;
+    }
+
+    #button1 {
+        background-color: #1873f2
+    }
+
+    #button3 {
+        background-color: #9dacc2;
+    }
+</style>
+
+<div class="font-style">
+    <link rel="stylesheet" href="~/css/Buttons.css" />
+    <h4>Skrzynka pocztowa</h4>
+
+    <div>
+        <h6>Mail użytkownika @Model.Letterbox.SenderId</h6>
+        <hr />
+        <div>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Letterbox.Title)
+            </dt>
+            <h6>@Model.Letterbox.Title</h6>
+        </div>
+        <div class="distance">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Letterbox.SenderId)
+            </dt>
+            <h6>@Model.Letterbox.SenderId</h6>
+        </div>
+        <div class="distance">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Letterbox.MailDate)
+            </dt>
+            <h6>@Model.Letterbox.MailDate</h6>
+        </div>
+        <div class="distance">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Letterbox.Content)
+            </dt>
+            <h6 class="ow-break-word">@Model.Letterbox.Content</h6>
+        </div>
+    </div>
+    <div class="distance">
+        <form method="post">
+            <div class="btn-group button-distance">
+                <button type="submit" id="button3" class="button inner" asp-page-handler="Return"><span>Powrót </span></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

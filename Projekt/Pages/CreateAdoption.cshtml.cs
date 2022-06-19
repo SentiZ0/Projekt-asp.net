@@ -22,7 +22,7 @@ namespace Projekt.Pages
         }
 
         [BindProperty]
-        public AdoptAnimals AdoptAnimals { get; set; }
+        public Adoption Adoption { get; set; }
 
         public string AlertMessage { get; set; }
 
@@ -31,11 +31,11 @@ namespace Projekt.Pages
 
         public async Task OnPostAsync(int id)
         {
-            var files = new List<FileEntity>();
+            var files = new List<AdoptionFileEntity>();
 
             foreach (var aformFile in FormFiles)
             {
-                var fileEntity = new FileEntity();
+                var fileEntity = new AdoptionFileEntity();
 
                 var formFile = aformFile;
 
@@ -77,8 +77,10 @@ namespace Projekt.Pages
                 files.Add(fileEntity);
             }
 
+            Adoption.FilePaths = files;
+            Adoption.AdoptionDate = DateTime.Now;
 
-            _context.AdoptAnimals.Add(AdoptAnimals);
+            _context.Adoptions.Add(Adoption);
             _context.SaveChanges();
         }
         public void OnGet()

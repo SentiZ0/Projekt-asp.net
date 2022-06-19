@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Email\YourEmailsDetails.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.3" />
@@ -27,10 +31,19 @@
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\Email\Response.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Email\YourEmails.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Email\YourEmailsDetails.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Pages\Email\Response.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Email\YourEmailsDetails.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Email\YourEmailsDetails.cshtml" />
   </ItemGroup>
 
 </Project>

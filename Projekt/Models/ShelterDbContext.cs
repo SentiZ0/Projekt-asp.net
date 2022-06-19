@@ -8,7 +8,7 @@ namespace Projekt.Data
         public ShelterDbContext(DbContextOptions options) : base(options) { }
        
         public DbSet<Animals> Animals { get; set; }
-        public DbSet<AdoptAnimals> AdoptAnimals { get; set; }
+        public DbSet<Adoption> Adoptions { get; set; }
 
         public DbSet<Letterbox> Letterboxes { get; set; }
 
@@ -17,6 +17,8 @@ namespace Projekt.Data
         public DbSet<Job> Jobs { get; set; }
 
         public DbSet<FileEntity> FileEntities { get; set; }
+
+        public DbSet<AdoptionFileEntity> AdoptionFiles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>()

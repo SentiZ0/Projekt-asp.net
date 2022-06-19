@@ -88,16 +88,16 @@
     <div>
         <h2>Utwórz zgłoszenie</h2>
         <h3>Tutaj możesz utworzyć zgłoszenie dotyczące zaginięcia twojego pupila</h3>
-        <h3>Zgłoszenie pojawi się automatycznie na stronie z aktualnościami po zatwierdzeniu przez administratora</h3>
+        <h3>Zgłoszenie pojawi się na stronie z aktualnościami po zatwierdzeniu przez administratora</h3>
     </div>
 
     <div class="text-center">
         <form method="post" enctype="multipart/form-data">
             <div>
                 <div>
-                    <label class="input" style="float: left;" asp-for="Animals.Name"></label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź imię zwierzaka" asp-for="Animals.Name" />
-                    <span asp-validation-for="Animals.Name" class="text-danger" style="float: left;"></span>
+                    <label class="input" style="float: left;" asp-for="Animals.Title"></label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tytuł" asp-for="Animals.Title" />
+                    <span asp-validation-for="Animals.Title" class="text-danger" style="float: left;"></span>
                 </div>
                 <div>
                     <label class="input" style="float: left; clear: left;" asp-for="Animals.Description"></label>

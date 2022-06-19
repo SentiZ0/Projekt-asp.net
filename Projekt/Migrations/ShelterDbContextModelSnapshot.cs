@@ -22,13 +22,16 @@ namespace Projekt.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Projekt.Models.AdoptAnimals", b =>
+            modelBuilder.Entity("Projekt.Models.Adoption", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("AdoptionDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Age")
                         .IsRequired()
@@ -57,7 +60,29 @@ namespace Projekt.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdoptAnimals");
+                    b.ToTable("Adoptions");
+                });
+
+            modelBuilder.Entity("Projekt.Models.AdoptionFileEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AdoptionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdoptionId");
+
+                    b.ToTable("AdoptionFiles");
                 });
 
             modelBuilder.Entity("Projekt.Models.Animals", b =>
@@ -76,13 +101,13 @@ namespace Projekt.Migrations
                         .HasMaxLength(385)
                         .HasColumnType("nvarchar(385)");
 
-                    b.Property<string>("Name")
+                    b.Property<DateTime>("ReportDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<DateTime>("ReportDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -202,6 +227,15 @@ namespace Projekt.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("Projekt.Models.AdoptionFileEntity", b =>
+                {
+                    b.HasOne("Projekt.Models.Adoption", null)
+                        .WithMany("FilePaths")
+                        .HasForeignKey("AdoptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Projekt.Models.FileEntity", b =>
                 {
                     b.HasOne("Projekt.Models.Animals", null)
@@ -218,6 +252,11 @@ namespace Projekt.Migrations
                         .HasForeignKey("AnimalsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Projekt.Models.Adoption", b =>
+                {
+                    b.Navigation("FilePaths");
                 });
 
             modelBuilder.Entity("Projekt.Models.Animals", b =>

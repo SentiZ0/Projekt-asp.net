@@ -29,7 +29,7 @@ namespace Projekt.Pages
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (Animals.Name == null || Animals.Description == null)
+            if (Animals.Title == null || Animals.Description == null)
             {
                 return Page();
             }

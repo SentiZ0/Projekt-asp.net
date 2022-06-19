@@ -12,8 +12,8 @@ using Projekt.Data;
 namespace Projekt.Migrations
 {
     [DbContext(typeof(ShelterDbContext))]
-    [Migration("20220616143601_Siemanko")]
-    partial class Siemanko
+    [Migration("20220619193043_InitSchema")]
+    partial class InitSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,69 @@ namespace Projekt.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Projekt.Models.Adoption", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("AdoptionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<string>("Breed")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(385)
+                        .HasColumnType("nvarchar(385)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Species")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Adoptions");
+                });
+
+            modelBuilder.Entity("Projekt.Models.AdoptionFileEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AdoptionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdoptionId");
+
+                    b.ToTable("AdoptionFiles");
+                });
 
             modelBuilder.Entity("Projekt.Models.Animals", b =>
                 {
@@ -40,13 +103,13 @@ namespace Projekt.Migrations
                         .HasMaxLength(385)
                         .HasColumnType("nvarchar(385)");
 
-                    b.Property<string>("Name")
+                    b.Property<DateTime>("ReportDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<DateTime>("ReportDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -161,7 +224,18 @@ namespace Projekt.Migrations
 
                     b.HasKey("PostId");
 
+                    b.HasIndex("AnimalsId");
+
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("Projekt.Models.AdoptionFileEntity", b =>
+                {
+                    b.HasOne("Projekt.Models.Adoption", null)
+                        .WithMany("FilePaths")
+                        .HasForeignKey("AdoptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Projekt.Models.FileEntity", b =>
@@ -173,9 +247,25 @@ namespace Projekt.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Projekt.Models.Post", b =>
+                {
+                    b.HasOne("Projekt.Models.Animals", null)
+                        .WithMany("Posts")
+                        .HasForeignKey("AnimalsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Projekt.Models.Adoption", b =>
+                {
+                    b.Navigation("FilePaths");
+                });
+
             modelBuilder.Entity("Projekt.Models.Animals", b =>
                 {
                     b.Navigation("FilePaths");
+
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,9 +10,9 @@ namespace Projekt.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Pole jest obowiązkowe")]
-        [Display(Name = "Imię pupila")]
+        [Display(Name = "Tytuł")]
         [MaxLength(20)]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         [Required(ErrorMessage = "Pole jest obowiązkowe")]
         [Display(Name = "Opis")]
