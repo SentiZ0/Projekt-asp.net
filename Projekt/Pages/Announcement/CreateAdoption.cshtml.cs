@@ -39,7 +39,7 @@ namespace Projekt.Pages.Announcement
             var files = new List<AdoptionFileEntity>();
 
 
-            if (FormFiles == null)
+            if (FormFiles.Count == 0)
             {
                 AlertMessage = "Nie wybrano/odnaleziono pliku.";
                 return Page();

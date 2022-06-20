@@ -1,5 +1,5 @@
 ﻿@page
-@model Projekt.Pages.CreateReportModel
+@model Projekt.Pages.Report.CreateReportModel
 @{
 }
 
@@ -119,6 +119,12 @@
         <div class="alert alert-primary" role="alert">
             <h6><b>Spróbuj ponownie</b></h6>
             @Model.AlertMessage
+        </div>
+    }
+    @if (Model.SuccesMessage != null)
+    {
+        <div class="alert alert-primary" role="alert">
+            @Model.SuccesMessage
         </div>
     }
 

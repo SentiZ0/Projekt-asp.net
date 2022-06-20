@@ -47,7 +47,7 @@ namespace Projekt.Pages.Email
             }
 
             var letterbox = await _context.Letterboxes.FirstOrDefaultAsync(m => m.Id == id);
-            if (letterbox == null)
+            if (letterbox == null || letterbox.ReceiverId != User.Identity.Name)
             {
                 return NotFound();
             }

@@ -5,7 +5,7 @@ using Projekt.Models;
 using Microsoft.AspNetCore.Http;
 using Projekt.Data;
 
-namespace Projekt.Pages
+namespace Projekt.Pages.Report
 {
     public class CreateReportModel : PageModel
     {
@@ -23,6 +23,7 @@ namespace Projekt.Pages
         public Animals Animals { get; set; }
 
         public string AlertMessage { get; set; }
+        public string SuccesMessage { get; set; }
 
         [BindProperty]
         public List<IFormFile> FormFiles { get; set; }
@@ -36,7 +37,7 @@ namespace Projekt.Pages
 
             var files = new List<FileEntity>();
 
-            if (FormFiles == null)
+            if (FormFiles.Count == 0)
             {
                 AlertMessage = "Nie wybrano/odnaleziono pliku.";
                 return Page();
@@ -87,6 +88,8 @@ namespace Projekt.Pages
 
             _context.Animals.Add(Animals);
             _context.SaveChanges();
+
+            SuccesMessage = "Uda³o siê utworzyæ zg³oszenie";
 
             return Page();
         }

@@ -29,7 +29,7 @@ namespace Projekt.Pages.Schedule
             }
             var job = await _context.Jobs.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (job == null)
+            if (job == null || job.WorkerMail != User.Identity.Name)
             {
                 return NotFound();
             }
