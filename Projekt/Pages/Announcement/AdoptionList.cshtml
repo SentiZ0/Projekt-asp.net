@@ -8,6 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
 <style>
+    .ow-break-word {
+        overflow-wrap: break-word;
+    }
+
     .post {
         margin: 40px 0px;
         font-family: 'Space Mono', monospace;
@@ -56,7 +60,8 @@
         margin: 20px 0px;
         clear: left;
     }
-    .item-distance{
+
+    .item-distance {
         margin: 5px 0px 0px;
     }
 
@@ -173,8 +178,10 @@
                         <br>
                         <div class="item-distance">
                             <h6 style="float: left;"><b>Opis</b></h6><br>
-                            <h6 class="text-left-size" style="margin: 5px 0px;">@element.Description</h6>
+                            <h6 class="text-left-size ow-break-word col-md-12" style="margin: 5px 0px;">@element.Description</h6>
                         </div>
+                        <br>
+                        <br>
                     </div>
                     <br>
                 </div>

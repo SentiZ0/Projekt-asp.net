@@ -6,7 +6,7 @@ namespace Projekt.Data
     public class ShelterDbContext : DbContext
     {
         public ShelterDbContext(DbContextOptions options) : base(options) { }
-       
+
         public DbSet<Animals> Animals { get; set; }
         public DbSet<Adoption> Adoptions { get; set; }
 

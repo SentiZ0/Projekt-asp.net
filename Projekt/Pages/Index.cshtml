@@ -12,6 +12,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
 <style>
+    .ow-break-word {
+        overflow-wrap: break-word;
+    }
+
     .post {
         margin: 40px 0px;
         font-family: 'Space Mono', monospace;
@@ -36,7 +40,8 @@
     .distance {
         margin: 50px 0px;
     }
-    .border-style{
+
+    .border-style {
         border-style: ridge;
         margin: 25px 0px;
         padding: 20px;
@@ -99,7 +104,8 @@
                     <h2 style="float: left;"><b>@element.Title </b></h2>
                     <h3 style="float: right;"><b>Data dodania:</b> @element.ReportDate</h3>
                     <br>
-                    <h4 style="float: left;"><b>Opis:</b> @element.Description</h4>
+                    <h4 style="float: left"><b>Opis:</b></h4>
+                    <h4 style="float: left;" class="ow-break-word col-md-12"> @element.Description</h4>
                     <br>
                     <div class="text-center distance">
                         <div id="carouselExample-@element.Id" class="carousel slide w-100 text-center" data-bs-ride="carousel" data-bs-interval="false">

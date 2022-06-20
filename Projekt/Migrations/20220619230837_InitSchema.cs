@@ -18,7 +18,7 @@ namespace Projekt.Migrations
                     Species = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Breed = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Age = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
+                    Age = table.Column<int>(type: "int", maxLength: 2, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(385)", maxLength: 385, nullable: false),
                     AdoptionDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

@@ -26,8 +26,8 @@ namespace Projekt.Models
 
         [Required(ErrorMessage = "Pole jest obowiązkowe")]
         [Display(Name = "Wiek")]
-        [MaxLength(2)]
-        public string Age { get; set; }
+        [Range(1,100, ErrorMessage ="Wymagana liczba z zakresu 1-100")]
+        public int Age { get; set; }
 
         [Required(ErrorMessage = "Pole jest obowiązkowe")]
         [Display(Name = "Opis")]

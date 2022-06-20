@@ -36,6 +36,12 @@ namespace Projekt.Pages
 
             var files = new List<FileEntity>();
 
+            if (FormFiles == null)
+            {
+                AlertMessage = "Nie wybrano/odnaleziono pliku.";
+                return Page();
+            }
+
             foreach (var aformFile in FormFiles)
             {
                 var fileEntity = new FileEntity();
@@ -46,12 +52,8 @@ namespace Projekt.Pages
                 var checkType = formFile.ContentType;
                 var fileCounter = 1;
 
-                if (formFile == null || formFile.Length == 0)
-                {
-                    AlertMessage = "Nie wybrano/odnaleziono pliku.";
-                    return Page();
-                }
-                else if (!(checkType.Contains("image")))
+
+                if (!(checkType.Contains("image")))
                 {
                     AlertMessage = "Wybrano niepoprawny format pliku. Obs³ugiwane formaty to gif/jpeg/png/webp.";
                     return Page();

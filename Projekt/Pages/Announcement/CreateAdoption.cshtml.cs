@@ -29,9 +29,21 @@ namespace Projekt.Pages.Announcement
         [BindProperty]
         public List<IFormFile> FormFiles { get; set; }
 
-        public async Task OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
+            if (Adoption.Name == null || Adoption.Breed == null || Adoption.Description == null || Adoption.Species == null)
+            {
+                AlertMessage = "Nie wszystkie pola zosta³y uzupe³nione";
+                return Page();
+            }
             var files = new List<AdoptionFileEntity>();
+
+
+            if (FormFiles == null)
+            {
+                AlertMessage = "Nie wybrano/odnaleziono pliku.";
+                return Page();
+            }
 
             foreach (var aformFile in FormFiles)
             {
@@ -44,20 +56,15 @@ namespace Projekt.Pages.Announcement
                 var fileCounter = 1;
                 bool stopLoop = true;
 
-                if (formFile == null || formFile.Length == 0)
-                {
-                    AlertMessage = "Nie wybrano/odnaleziono pliku.";
-                    return;
-                }
-                else if (!checkType.Contains("image"))
+                if (!checkType.Contains("image"))
                 {
                     AlertMessage = "Wybrano niepoprawny format pliku. Obs³ugiwane formaty to gif/jpeg/png/webp.";
-                    return;
+                    return Page();
                 }
                 else if (fileSize > 1048576)
                 {
                     AlertMessage = "Plik nie mo¿e przekraczaæ 10mb";
-                    return;
+                    return Page();
                 }
 
                 string targetFileName = $"{_environment.ContentRootPath}/wwwroot/{fileCounter}{formFile.FileName}";
@@ -82,6 +89,8 @@ namespace Projekt.Pages.Announcement
 
             _context.Adoptions.Add(Adoption);
             _context.SaveChanges();
+
+            return Page();
         }
         public void OnGet()
         {

@@ -33,10 +33,9 @@ namespace Projekt.Migrations
                     b.Property<DateTime>("AdoptionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Age")
-                        .IsRequired()
+                    b.Property<int>("Age")
                         .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Breed")
                         .IsRequired()
